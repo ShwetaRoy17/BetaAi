@@ -34,7 +34,8 @@ export default {
         gshades6:'#999999',
         gshades7:'#B3B3B3',
         gshades8:'#CCCCCC',
-        // supporting color shades
+        gsh:'#C1C1C1',
+        // supporting color shades #2604ED
         suppcol1:'#9E00FF',
         suppcol2:'#5EDC11',
         suppcol3:'#FFCE22',
