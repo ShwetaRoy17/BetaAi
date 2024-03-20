@@ -32,7 +32,7 @@ const navLinkStyles = ({ isActive }) => {
         {/* Logo and Text */}
         <div className="flex items-center mr-[100px]">
           <img src={betaAi} alt="BetaAI Logo" className="h-[50px] w-[50px] ml-2" />
-          <span className="text-white text-[20px] font-semibold ">BETAI</span>
+          <span className="text-white text-[20px] font-extrabold ">BETAI</span>
         </div>
         
         {/* Search Bar */}
@@ -46,8 +46,8 @@ const navLinkStyles = ({ isActive }) => {
             type="text"
             placeholder="Search"
             value={searchq}
-
-            className="h-[24px] bg-transparent outline-none w-full placeholder-gray-500 ml-[22px]"
+            onChange={(e)=>{}}
+            className="h-[24px] bg-transparent font-serif outline-none w-full placeholder-gray-500 ml-[22px]"
           />
         </div>
 

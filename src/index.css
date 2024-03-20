@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+    @apply bg-[#F4F4F4]
+    
+}
 
 
 @layer base {
@@ -8,6 +14,7 @@
         font-family:conthrax;
         font-style:normal;
         font-weight:600;
-        src:local('Conthrax'),url('./assets/conthrax-sb.ttf') format('woff')}
+        src:local('Conthrax'),url('./assets/conthrax-sb.ttf') format('woff')
+    }
     
   }
