@@ -1,10 +1,14 @@
 import React from 'react'
+import Stats from './stats'
+
 
 const Home = () => {
   return (
-    <div>
-      
+    <div >
+      <Stats/>
+    
     </div>
+
   )
 }
 
