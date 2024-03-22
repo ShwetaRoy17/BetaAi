@@ -38,8 +38,9 @@ const Fixture = () => {
   return (
     <div className="h-[100%] bg-white rounded px-[3vw] py-[1vh]">
       
-      {/* div contaning all the information  */}
+      {/* div contaning all the information  flags name  date and time*/}
       <div className="flex flex-row  h-[90%] items-center justify-between my-[3vh]">
+        {/* first team name and flag */}
         <div className="h-[100%] p-[2px] mt-[4vh] ml-[5vw]">
           <img
             className="h-[12vh] w-[12vh] mr-4"
@@ -62,7 +63,7 @@ const Fixture = () => {
           <span className="text-[#132B47] text-[2vh] font-serif font-[400]">{fixtData.date}</span>
           </div>
         </div>
-
+{/* second team image and name */}
         <div className="h-[100%] p-[2px] mt-[4vh] mr-[5vw]">
           <img
             className="h-[12vh] w-[12vh] mr-4"
