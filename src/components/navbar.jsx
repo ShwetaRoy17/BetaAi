@@ -27,7 +27,7 @@ const navLinkStyles = ({ isActive }) => {
   };
 
   return (
-    <nav className="bg-pup1 py-4 px-4 h-[87px]">
+    <nav className="sticky top-0 w-full bg-pup1 py-4 px-4 h-[87px] mb-[4vh]">
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo and Text */}
         <div className="flex items-center mr-[100px]">
