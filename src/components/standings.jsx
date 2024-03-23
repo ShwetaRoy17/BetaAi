@@ -45,7 +45,7 @@ const LeagueTable = () => {
   ];
 
   return (
-    <div className="flex flex-col w-full overflow-y-auto bg-white">
+    <div className="flex flex-col w-full overflow-y-auto bg-white h-full">
       <h1 className="text-[2.6vh] font-[600] mb-[1vh] text-center mt-[1vh] bg-white">STANDINGS</h1>
       <div className='shadow overflow-x-auto rounded-md'>
       <table className="w-full border-collapse">

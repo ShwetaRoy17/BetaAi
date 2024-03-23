@@ -47,7 +47,8 @@ export default {
       },
       fontFamily: {
         sans: ["Conthrax", 'Arial', 'sans-serif'], // Example custom font stack for sans-serif
-        serif:['Inter']
+        serif:['Inter'],
+        source:['Source Sans Pro']
         // Add more custom font families as needed
       },
     },

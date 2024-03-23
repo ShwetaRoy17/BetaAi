@@ -16,7 +16,7 @@ const head_to_head = () => {
       <div className="shadow overflow-x-auto rounded-md">
         <table className="w-full border-collapse">
           <thead>
-            <tr className="text-center sticky bg-sfs3">
+            <tr className="text-center bg-sfs3">
               <th className="th-class">#</th>
               <th className="th-class pl-[2vw]">LEAGUE</th>
               <th className="th-class pl-[2vw]">HOME TEAM</th>
