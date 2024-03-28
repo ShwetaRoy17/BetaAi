@@ -44,7 +44,7 @@ const Statistics = () => {
       <h2 className="text-[3vh] font-[600] text-center text-[#0B1D32] mb-[1.5vh]">
         STATISTICS
       </h2>
-      <div className="flex justify-center gap-5">
+      <div className="flex justify-center gap-5 overflow-y-auto">
         {buttonOptions.map((buttonValue) => (
           <button
             key={buttonValue}
