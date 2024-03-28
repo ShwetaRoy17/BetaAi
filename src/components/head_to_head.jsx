@@ -12,7 +12,7 @@ const head_to_head = () => {
 
   return (
     <div className="flex flex-col w-full bg-white h-full overflow-y-auto">
-      <h1 className="text-[2.6vh] font-[600] mb-[1vh] text-center mt-[1vh]">LAST HEAD TO HEAD GAMES</h1>
+      <h1 className="text-[2.6vh] font-[600] mb-[1vh] text-center mt-[1vh]">LAST 5 HEAD TO HEAD GAMES</h1>
       <div className="shadow overflow-x-auto rounded-md">
         <table className="w-full border-collapse">
           <thead>
