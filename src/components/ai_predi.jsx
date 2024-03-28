@@ -28,7 +28,7 @@ const AISights = ({  fetchPrediction }) => {
           )}
         </div>
       ) : (
-        <div className="flex items-center justify-center h-full bg-black opacity-50 blur">
+        <div className="flex items-center justify-center h-full bg-black opacity-50 static blur">
           <div className="flex flex-col items-center">
             <i className="fas fa-lock text-white text-4xl mb-2"></i>
             <p className="text-white text-lg font-bold z-10">Access Premium Feature</p>
