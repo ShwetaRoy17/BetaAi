@@ -1,8 +1,8 @@
 import React from 'react'
-import Stats from './stats'
-import CommentSection from './comments'
+import Stats from '../components/stats'
+import CommentSection from '../components/comments'
 import AiInsights from './ai_insights'
-import Odds from './odds'
+import Odds from '../components/odds'
 
 
 const Home = () => {

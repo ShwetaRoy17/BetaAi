@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Chatbot from "./chatbot";
-import AISights from "./ai_predi";
+import Chatbot from "../components/chatbot";
+import AISights from "../components/ai_predi";
 
 const ai_insights = () => {
   return (

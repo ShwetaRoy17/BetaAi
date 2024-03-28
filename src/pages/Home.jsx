@@ -1,7 +1,7 @@
 import React from 'react';
-import Fixture from './Fixture'
-import TopLeagues from './topLeague';
-import Countries from './countries';
+import Fixture from '../components/Fixture'
+import TopLeagues from '../components/topLeague';
+import Countries from '../components/countries';
 // import CalendarComponent from './Calendar';
 
 

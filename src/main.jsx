@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Leagues from "./components/leagues.jsx";
+import Leagues from "./pages/leagues.jsx";
 import Root from "./layout.jsx";
-import Matches from "./components/matches.jsx";
-import Main from "./components/Main.jsx";
-import Home from "./components/Home.jsx";
-import Profile from "./components/Profile.jsx";
+import Matches from "./pages/matches.jsx";
+import Main from "./pages/Main.jsx";
+import Home from "./pages/Home.jsx";
+import Profile from "./pages/Profile.jsx";
 import "./index.css";
 import { store } from "./store/store.js";
 import { Provider } from "react-redux";
