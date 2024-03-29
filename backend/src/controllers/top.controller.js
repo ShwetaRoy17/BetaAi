@@ -5,23 +5,20 @@ import fetchData from '../utils/fetchData.js';
 
 
 const getTopCountries = asyncHandler(async(req,res)=>{
-    const url = ``;
-    const data = await fetchData('/your_top_countries_endpoint');
+    const url = `https://api.football-data-api.com/country-list?key=${process.env.API_KEY}`;
+    const data = await fetchData(url);
     if(!data){
         throw new ApiError(505,"couldn't fetch data");
     }
     return res
     .status(201)
-    .json(new ApiResponse(200,topcountries,"top countries data"));
+    .json(new ApiResponse(200,data.data,"top countries data"));
 })
 
 const getTopLeagues = asyncHandler(async(req,res)=>{
-    const url = `https://api.football-data-api.com/country-list?key=${process.env.API_KEY}`;
-    const data = await fetchData('/your_top_countries_endpoint',{
-        headers:{
-            'X-Auth-Token':process.env.API_KEY,
-        }
-    });
+    const url = `https://api.football-data-api.com/league-list?key=${process.env.API_KEY}`;
+    const data = await fetchData(url
+    );
 
     if(!data){
         throw new ApiError(505,"couldn't fetch data");
@@ -31,7 +28,7 @@ const getTopLeagues = asyncHandler(async(req,res)=>{
 
     return res
     .status(201)
-    .json(new ApiResponse(200,topcountries,"top countries data"));
+    .json(new ApiResponse(200,data.data,"top countries data"));
 })
 
 export  {getTopCountries,getTopLeagues};
