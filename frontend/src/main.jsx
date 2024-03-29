@@ -19,6 +19,9 @@ const router = createBrowserRouter(
       <Route path='leagues' element ={<Leagues/>}></Route>
       <Route path='matches' element ={<Matches/>}></Route>
       <Route path="profile" element={<Profile/>}></Route>
+      <Route path="search/team/:id" element></Route>
+      <Route path="search/player/:id" element></Route>
+
   </Route>
   )
 );

@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Import Axios
+import { getheader } from '../get';
+
 
 const Countries = () => {
-//   const [leagues, setLeagues] = useState([]);
+  console.log(`https://api.football-data-api.com/country-list?key=${import.meta.env.VITE_API_KEY}`,{getheader});
+  const [leagues, setLeagues] = useState([]);
 
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       const response = await axios.get('https://your-api-endpoint.com/leagues'); // Replace with your API endpoint
-//       setLeagues(response.data);
-//     };
-
-//     fetchData();
-//   }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(`https://api.football-data-api.com/country-list?key=${import.meta.env.VITE_API_KEY}`); // Replace with your API endpoint
+      setLeagues(response.data);
+      console.log(response.data);
+    };
+ 
+    fetchData();
+  }, []);
 
 const countries= [
     {country:"America"},

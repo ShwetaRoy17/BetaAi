@@ -1,25 +1,17 @@
 import React, { useState, useEffect } from "react";
 import realMadrid from "../assets/Real-Madrid-Logo.png";
+import {useDispatch,useSelector} from 'react-redux'
 import axios from "axios";
 
 const Fixture = () => {
+  const dispatch = useDispatch();
   const [fixtureData, setFixtureData] = useState(null);
 
-  // Replace with your actual API endpoint
-  const apiUrl = "https://footystats.org/";
+ 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(apiUrl);
-        setFixtureData(response.data[0]); // Assuming first fixture in response
-      } catch (error) {
-        console.error("Error fetching fixture data:", error);
-      }
-    };
-
-    fetchData();
-  }, [apiUrl]);
+  // useEffect(() => {
+  //  dispatch(fetchFixtures())
+  // }, [dispatch]);
 
   // if (!fixtureData) {
   //   return <div>Loading fixture data...</div>;
