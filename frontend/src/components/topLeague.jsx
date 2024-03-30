@@ -10,7 +10,7 @@ const TopLeagues = () => {
   , [dispatch]);
   
   const leagues = useSelector((state)=>state.topLeague.leagues)
-  console.log("leagues",leagues);
+  // console.log("leagues",leagues);
 
   return (
     <div className="bg-[#1C2632] dark:bg-gray-800 rounded-lg shadow-md py-4 px-2 overflow-y-auto h-full">

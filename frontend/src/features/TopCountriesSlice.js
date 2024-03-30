@@ -3,22 +3,30 @@ import axios from "axios";
 
 const initialState = {
   countries: [],
-  loading: false,
-  error: null,
 };
 
-export const fetchCountries = createAsyncThunk(
-  "countries/fetchCountries",
+export const getTopCountries = createAsyncThunk(
+  "topcountries",
   async () => {
-    const response = await axios.get("https://your-api-endpoint/countries"); // Replace with actual API endpoint
+    const response = await axios.get("http://localhost:8000/api/v1/home/topcountry"); // Replace with actual API endpoint
+    // console.log("response:\n",response);
     return response.data;
   }
 );
 
-const topCountries= createSlice({
-  name:"topCountry",
+const topCountrySlice = createSlice({
+  name: 'Countries',
   initialState,
-  reducers:{},
+  reducers: {}, // No reducers needed in this example
+  extraReducers:(builder) => {
+      builder
+        .addCase(getTopCountries.fulfilled, (state,action) => {
+      
+      state.countries = action.payload.data;
+        })
+      
+  }
+});
 
-})
-export default topCountries.reducer;
+export default topCountrySlice.reducer;
+
