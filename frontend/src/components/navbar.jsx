@@ -5,6 +5,7 @@ import profile from "../assets/profile.png";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import SearchBar from "./searchbar";
 
 const Navbar = () => {
   const [searchq, setSearchq] = useState("");
@@ -44,7 +45,7 @@ const Navbar = () => {
         </div>
     </NavLink>
         {/* Search Bar */}
-        <div className="flex items-center bg-[#2604ED] rounded-[10px] h-[6vh] w-[43vw] px-4 py-2">
+        {/* <div className="flex items-center bg-[#2604ED] rounded-[10px] h-[6vh] w-[43vw] px-4 py-2">
           <button
             className="text-[#898989] font-semibold "
             onClick={handleSearch}
@@ -58,8 +59,8 @@ const Navbar = () => {
             onChange={(e) => {}}
             className="h-[24px] bg-transparent font-serif outline-none w-full placeholder-gray-500 ml-[22px]"
           />
-        </div>
-
+        </div> */}
+<SearchBar/>
         {/* Mobile Navigation Icon */}
         <div onClick={toggleMenu} className="block md:hidden text-[#898989]">
           {menuOpen ? (
@@ -79,7 +80,7 @@ const Navbar = () => {
         >
           {/* Mobile Logo */}
           
-          <div className="w-full flex items-center m-2">
+          <div className="w-full flex items-center m-2" key={0}>
           <img
             src={betaAi}
             alt="BetaAI Logo"
@@ -93,7 +94,7 @@ const Navbar = () => {
             <NavLink
               className="p-4 hover:text-pup4"
               style={navLinkStyles}
-              key={index}
+              key={index + 1}
               to={item.link}
             >
               {item.name}
@@ -110,7 +111,7 @@ const Navbar = () => {
                   <NavLink
                     className="text-white mx-[40px] text-[15px] font-[600] leading-[18px]"
                     style={navLinkStyles}
-                    key={index}
+                    key={index }
                     to={link.link}
                   >
                     {link.name}
