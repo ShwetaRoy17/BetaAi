@@ -15,4 +15,10 @@ export const fetchCountries = createAsyncThunk(
   }
 );
 
-export default fetchCountries.reducer;
+const topCountries= createSlice({
+  name:"topCountry",
+  initialState,
+  reducers:{},
+
+})
+export default topCountries.reducer;
