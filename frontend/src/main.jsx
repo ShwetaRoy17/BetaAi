@@ -7,9 +7,13 @@ import Main from "./pages/Main.jsx";
 import Home from "./pages/Home.jsx";
 import Profile from "./pages/Profile.jsx";
 import "./index.css";
-import { store } from "./store/store.js";
+import store  from "./store/store.js";
 import { Provider } from "react-redux";
 import { createBrowserRouter,createRoutesFromElements,Route,RouterProvider } from "react-router-dom";
+import League from "./components/League.jsx";
+import Team from "./components/Team.jsx";
+import Player from "./components/player.jsx";
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,8 +23,9 @@ const router = createBrowserRouter(
       <Route path='leagues' element ={<Leagues/>}></Route>
       <Route path='matches' element ={<Matches/>}></Route>
       <Route path="profile" element={<Profile/>}></Route>
-      <Route path="search/team/:id" element></Route>
-      <Route path="search/player/:id" element></Route>
+      <Route path="search/team/:id" element={<Team/>}></Route>
+      <Route path="search/player/:id" element={<Player/>}></Route>
+      <Route path="search/league/:id" element={<League/>}></Route>
 
   </Route>
   )

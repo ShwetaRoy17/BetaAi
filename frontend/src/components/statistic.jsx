@@ -19,11 +19,11 @@ const Statistics = () => {
   
     return (
       <>
-      <div class="font-serif text-base text-[12px] text-center font-[700] dark:text-white text-[#132B47]">{title}</div>
+      <div className="font-serif text-base text-[12px] text-center font-[700] dark:text-white text-[#132B47]">{title}</div>
       <div className="flex flex-row justify-center mx-auto">
         <div className="font-serif font-[700] text-[12px] mr-[1vw] ">{min}</div>
-<div class="w-[70%] bg-pup4 rounded-full h-1.5 mb-4 dark:bg-pup6">
-  <div class="bg-pup2 h-1.5 rounded-full dark:bg-pup3" style={{width: "30%"}}></div>
+<div className="w-[70%] bg-pup4 rounded-full h-1.5 mb-4 dark:bg-pup6">
+  <div className="bg-pup2 h-1.5 rounded-full dark:bg-pup3" style={{width: "30%"}}></div>
 </div>
         <div className="font-serif font-[700] text-[12px] ml-[1vw]">{max}</div>
       </div>

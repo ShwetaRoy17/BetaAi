@@ -1,14 +1,13 @@
 import React, { useState, useDispatch } from "react";
 import Trie from "../utils/trie.js";
-import dictionary from "../utils/dictionary.js";
-import search from "../assets/search.png";
-// import { useHistory } from "react-router-dom";
-// import { searchAction } from "../redux/searchSlice";
-// Import search action
+import { dictionary,Teamlist,Playerlist,Leaguelist } from "../utils/dictionary.js";
+import searchImg from "../assets/search.png";
+import {useNavigate} from 'react-router-dom'
 
 const SearchBar = () => {
+  const navigate = useNavigate();
   const [prefix, setPrefix] = useState("");
-  const [suggestion, setSuggestion] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
   var myTrie = new Trie();
   (async () => {
     const words = dictionary.words;
@@ -18,69 +17,129 @@ const SearchBar = () => {
     }
   })();
 
-  // const [query, setQuery] = useState("");
-  // const dispatch = useDispatch();
-  // const history = useHistory();
-
+  // search function to direct to different pages
   const handleSearch = (event) => {
     event.preventDefault();
-    alert("hello");
-    // if (query) {
-    //   dispatch(searchAction(query)); // Dispatch search action with query
-    // }
-    // history.push(`/search?q=${query}`); // Redirect to search page
+    const found = {
+      type: null,
+      id: null,
+    };
+  
+    // Search in leagues
+    for (const [leagueId, leagueName] of Object.entries(Leaguelist)) {
+      if (leagueName.toLowerCase() === searchValue.toLowerCase()) {
+        found.type = "league";
+        found.id = leagueId;
+        break;
+      }
+    }
+  
+    // Search in teams
+    if (!found.id) {
+      for (const [teamId, teamName] of Object.entries(Teamlist)) {
+        if (teamName.toLowerCase() === searchValue.toLowerCase()) {
+          found.type = "team";
+          found.id = teamId;
+          break;
+        }
+      }
+    }
+  
+    // Search in players
+    if (!found.id) {
+      for (const [playerId, playerName] of Object.entries(Playerlist)) {
+        if (playerName.toLowerCase() === searchValue.toLowerCase()) {
+          found.type = "player";
+          found.id = playerId;
+          break;
+        }
+      }
+    }
+
+    if(!found.id){
+      navigate('/error-page')
+      alert("No such search exists");
+    }
+// Redirect to search page 
+
+const url = `search/${found.type}/:${found.id}`
+navigate(url);
+
+    
   };
 
-  const handleChange = (event) => {
-    var value = event.target.value;
+  const handleSuggestionClick = (value) => {
     setPrefix(value);
+
     var words = value.split(" ");
     var trie_prefix = words[words.length - 1].toLowerCase();
     var found_words = myTrie.find(trie_prefix).sort((a, b) => {
       return a.length - b.length;
     });
-    var first_word = found_words[0];
-    if (
-      found_words.length !== 0 &&
-      value !== "" &&
-      value[value.length - 1] !== ""
-    ) {
-      if (first_word != null) {
-        var remainder = first_word.slice(trie_prefix.length);
-        setSuggestion(value + remainder);
-      }
-    } else {
-      setSuggestion(value);
-    }
-    setQuery(event.target.value);
+    console.log("found words\n", found_words);
+    setSuggestions(found_words);
+    console.log("suggested words", suggestions);
   };
 
-  const handleKeyDown = (e) => {
-    if (e.keyCode === 39) {
-      setPrefix(suggestion);
+  const handleChange = (event) => {
+    var value = event.target.value;
+    setPrefix(value);
+
+    var words = value.split(" ");
+    var trie_prefix = words[words.length - 1].toLowerCase();
+    var found_words = myTrie.find(trie_prefix).sort((a, b) => {
+      return a.length - b.length;
+    });
+    console.log("found words\n", found_words);
+    setSuggestions(found_words);
+    console.log("suggested words", suggestions);
+
+    // console.log(value);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Tab" && suggestions.length > 0) {
+      setPrefix(suggestions[0]);
+      setSuggestions([]);
+    } else if (event.key === "Enter") {
+      // Handle search query here (e.g., navigate to search results page)
+      handleSearch(event);
     }
   };
 
   return (
-    <div className="flex items-center bg-[#2604ED] rounded-[10px] h-[6vh] w-[43vw] px-4 py-2">
-      <button className="text-[#898989] font-semibold " onClick={handleSearch}>
-        <img src={search} alt="search" className="h-[24px] w-[24px]" />
-      </button>
-      <input
-        type="text"
-        placeholder="Search"
-        value={prefix}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        className="h-[24px] text-white bg-transparent font-serif outline-none w-full placeholder-gray-500 ml-[22px]"
-      />
-      <input
-        type="text"
-        name="search-bar"
-        className="-z-1 text-gray-400 cursor-none font-serif h-[24px] w-full ml-[22px]"
-        id="search-bar2"
-        value={suggestion}
-      />
+    <div className="flex flex-col items-center bg-white rounded-[10px]">
+      <div className="flex items-center bg-[#2604ED] rounded-[10px] h-[6vh] w-[43vw] px-4 py-2">
+        <div className="text-[#898989] font-semibold ">
+          <img src={searchImg} alt="search" className="h-[24px] w-[24px]" />
+        </div>
+        <input
+          type="text"
+          placeholder="Search"
+          value={prefix}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          className="h-[24px] text-white bg-transparent font-serif outline-none w-full placeholder-gray-500 ml-[22px] cursor-pointer"
+        />
+      </div>
+
+      {suggestions.length > 0 && (
+        <div className=" bg-sfs5 rounded-md shadow-md px-2 py-3 w-full">
+          <ul className="list-style-none w-full flex flex-col text-[14px] overflow-y-auto">
+            {suggestions.map((suggestion) => {
+              return (
+                <li
+                  key={suggestion}
+                  className="hover:text-black hover:font-[500] text-[14px] text-[#132B47] font-serif "
+                  onClick={() => handleSuggestionClick(suggestion)}
+                >
+                  {suggestion}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
