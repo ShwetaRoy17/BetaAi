@@ -1,10 +1,12 @@
-import React, { useState, useDispatch } from "react";
+import React, { useState, useRef } from "react";
 import Trie from "../utils/trie.js";
 import { dictionary,Teamlist,Playerlist,Leaguelist } from "../utils/dictionary.js";
 import searchImg from "../assets/search.png";
 import {useNavigate} from 'react-router-dom'
 
 const SearchBar = () => {
+  const inputRef = useRef(null);
+  const [showDiv, setShowDiv] = useState(false);
   const navigate = useNavigate();
   const [prefix, setPrefix] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -27,7 +29,7 @@ const SearchBar = () => {
   
     // Search in leagues
     for (const [leagueId, leagueName] of Object.entries(Leaguelist)) {
-      if (leagueName.toLowerCase() === searchValue.toLowerCase()) {
+      if (leagueName.toLowerCase() === prefix.toLowerCase()) {
         found.type = "league";
         found.id = leagueId;
         break;
@@ -37,7 +39,7 @@ const SearchBar = () => {
     // Search in teams
     if (!found.id) {
       for (const [teamId, teamName] of Object.entries(Teamlist)) {
-        if (teamName.toLowerCase() === searchValue.toLowerCase()) {
+        if (teamName.toLowerCase() === prefix.toLowerCase()) {
           found.type = "team";
           found.id = teamId;
           break;
@@ -48,7 +50,7 @@ const SearchBar = () => {
     // Search in players
     if (!found.id) {
       for (const [playerId, playerName] of Object.entries(Playerlist)) {
-        if (playerName.toLowerCase() === searchValue.toLowerCase()) {
+        if (playerName.toLowerCase() === prefix.toLowerCase()) {
           found.type = "player";
           found.id = playerId;
           break;
@@ -107,6 +109,14 @@ navigate(url);
     }
   };
 
+  const handleFocus = () => {
+    setShowDiv(true);
+  };
+
+  const handleBlur = () => {
+    setShowDiv(false);
+  };
+
   return (
     <div className="flex flex-col items-center bg-white rounded-[10px]">
       <div className="flex items-center bg-[#2604ED] rounded-[10px] h-[6vh] w-[43vw] px-4 py-2">
@@ -115,6 +125,9 @@ navigate(url);
         </div>
         <input
           type="text"
+          ref={inputRef}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           placeholder="Search"
           value={prefix}
           onChange={handleChange}
@@ -123,7 +136,7 @@ navigate(url);
         />
       </div>
 
-      {suggestions.length > 0 && (
+      {showDiv && suggestions.length > 0 && (
         <div className=" bg-sfs5 rounded-md shadow-md px-2 py-3 w-full">
           <ul className="list-style-none w-full flex flex-col text-[14px] overflow-y-auto">
             {suggestions.map((suggestion) => {
