@@ -6,7 +6,7 @@ const Teamlist = {
     
 
 }
-const Playerlist = {"ronaldo":1,}
+const Playerlist = {1:"ronaldo",2:"messi"}
 const Leaguelist = {}
 
 export  {dictionary,Teamlist,Playerlist,Leaguelist};

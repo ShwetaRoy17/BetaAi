@@ -2,6 +2,7 @@ import React from 'react';
 import Fixture from '../components/Fixture'
 import TopLeagues from '../components/topLeague';
 import Countries from '../components/countries';
+import Matches from './matches';
 // import CalendarComponent from './Calendar';
 
 
@@ -10,7 +11,7 @@ const Home = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-[32.1vw,40vw,17vw]  gap-4 h-[76vh] mx-[2vw] md:mx-auto">
       <div className="flex flex-col justify-evenly dark:bg-gray-800 rounded-lg">
-        <div className='h-[24%]'>
+        <div className='h-[26%]'>
             <Fixture/>
         </div>
         <div className='flex flex-row justify-between h-[46.4vh] px-[.5vw]'>
@@ -25,6 +26,7 @@ const Home = () => {
         {/* Content for first sub-div */}
       </div>
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md px-4 py-4">
+        <Matches/>
         {/* Content for second sub-div */}
       </div>
       <div className="flex md:flex-col justify-between dark:bg-gray-800 rounded-lg">
