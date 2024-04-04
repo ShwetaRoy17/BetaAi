@@ -1,43 +1,43 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
-  matches: [],
-  loading: false,
-  error: null,
+    currentMatch: [],
 };
 
-export const fetchAllMatches = createAsyncThunk(
-  "allMatches/fetchAllMatches",
-  async () => {
-    const response = await axios.get(`https://api.football-data-api.com/todays-matches?key=${env.API_KEY}`); // Replace with actual API endpoint
-    return response.data;
-  }
+// Action creator for fetching match details
+export const fetchMatchDetails = createAsyncThunk(
+    'match',
+    async () => {
+        const response = await axios.get("http://localhost:8000/api/v1/main/matches"); // Replace with actual API endpoint
+        // const data = await response.data;
+        console.log("match data/n",response);
+        return response.data;
+    }
 );
 
-const allMatchesSlice = createSlice({
-  name: "allMatches",
-  initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchAllMatches.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchAllMatches.fulfilled, (state, action) => {
-        state.loading = false;
-        state.matches = action.payload;
-      })
-      .addCase(fetchAllMatches.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-      });
-  },
+export const fetchAdditionalData = createAsyncThunk(
+    'match/fetchAdditionalData1',
+    async (matchId) => {
+        const response = await fetch(/* Your first API endpoint */ + matchId);
+        const data = await response.json();
+        return data;
+    }
+);
+
+
+const matchSlice = createSlice({
+    name: 'match',
+    initialState,
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchMatchDetails.fulfilled, (state, action) => {
+                
+                state.currentMatch = action.payload.data;
+            })
+    },
 });
 
-export const selectAllMatches = (state) => state.allMatches.matches;
-export const selectLoadingAllMatches = (state) => state.allMatches.loading;
-export const selectErrorAllMatches = (state) => state.allMatches.error;
 
-export default allMatchesSlice.reducer;
+
+export default matchSlice.reducer;

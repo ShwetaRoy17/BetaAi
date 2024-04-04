@@ -9,7 +9,7 @@ export const getTopLeagues = createAsyncThunk(
   "topLeagues/fetchTopLeagues",
   async () => {
     const response = await axios.get("http://localhost:8000/api/v1/home/topleague"); // Replace with actual API endpoint
-    console.log("response:\n",response);
+    // console.log("response:\n",response);
     return response.data;
   }
 );
