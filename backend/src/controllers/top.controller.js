@@ -54,7 +54,7 @@ const getTeamdetails = asyncHandler(async(req,res)=>{
     const id = req.params.id;
     console.log("id:",id);
     const url = `https://api.football-data-api.com/team?key=dcf0fc31fba7156ec14dcb521dbfa5ef3099b17ed993a03e11d70c65c24ab30a&team_id=${id}`
-    console.log("url:",url);
+    // console.log("url:",url);
     const data = await fetchData(url);
     if(!data) {
         throw new ApiError(500,"team details got something wrong");
