@@ -18,7 +18,7 @@ import Player from "./components/player.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
   <Route path="/" element={<Root />}>
-     <Route path='' element={<Main/>}></Route>
+     <Route path='/matches/:matchid' element={<Main/>}></Route>
      <Route path='home' element={<Home/>}></Route>
       <Route path='leagues' element ={<Leagues/>}></Route>
       <Route path='matches' element ={<Matches/>}></Route>

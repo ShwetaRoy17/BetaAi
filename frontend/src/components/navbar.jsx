@@ -7,15 +7,17 @@ import { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import SearchBar from "./searchbar";
 
+
+
+
+
 const Navbar = () => {
-  const [searchq, setSearchq] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-  // search function
-  const handleSearch = (e) => {};
+
   // navbar options
   let Links = [
     { name: "HOME", link: "/home" },
@@ -44,22 +46,7 @@ const Navbar = () => {
           <span className="text-white text-[20px] font-extrabold ">BETAI</span>
         </div>
     </NavLink>
-        {/* Search Bar */}
-        {/* <div className="flex items-center bg-[#2604ED] rounded-[10px] h-[6vh] w-[43vw] px-4 py-2">
-          <button
-            className="text-[#898989] font-semibold "
-            onClick={handleSearch}
-          >
-            <img src={search} alt="search" className="h-[24px] w-[24px]" />
-          </button>
-          <input
-            type="text"
-            placeholder="Search"
-            value={searchq}
-            onChange={(e) => {}}
-            className="h-[24px] bg-transparent font-serif outline-none w-full placeholder-gray-500 ml-[22px]"
-          />
-        </div> */}
+       
 <SearchBar/>
         {/* Mobile Navigation Icon */}
         <div onClick={toggleMenu} className="block md:hidden text-[#898989]">
