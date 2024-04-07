@@ -1,44 +1,28 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faShare } from "@fortawesome/free-solid-svg-icons";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import profile from "../assets/profile.png";
+import {useSelector,useDispatch} from 'react-redux'
+import { auth } from '../utils/firebase.js';
+import {unsetUserInformation} from '../features/user.Slice.js'
+import { useNavigate } from "react-router-dom";
+import {signOut} from "firebase/auth"
 
-const MatchInsights = ({ heading, predictions, otherFields }) => {
-  return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md px-4 py-4 h-[46%]">
-      <h2 className="text-lg font-bold mb-4">{heading}</h2>
-      <div className="flex flex-col border-b border-gray-200 dark:border-gray-700 pb-2">
-        {/* Display Match Predictions */}
-        {predictions && (
-          <>
-            <p className="text-sm">Predictions:</p>
-            <ul className="list-disc pl-4">
-              {predictions.map((prediction, index) => (
-                <li key={index}>{prediction}</li>
-              ))}
-            </ul>
-          </>
-        )}
-      </div>
-      {/* Display Other Fields */}
-      {otherFields && (
-        <div className="mt-2">
-          {Object.entries(otherFields).map(([field, value], index) => (
-            <p key={index} className="text-sm">
-              {field}: {value}
-            </p>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-};
 
 const UserProfileCard = ({ imageUrl, name, title }) => {
-  const onEditClick = () => {};
-  const onShareClick = () => {};
-  const onClick = () => {};
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const Logout = () => {
+
+    signOut(auth).then(() => {
+      alert("hello");
+      // Sign-out successful.t
+      dispatch(unsetUserInformation());
+      navigate('/home')
+    }).catch((error) => {
+      // An error happened.
+      console.log("user not logged out",error);
+    });
+  }
   return (
     <div className="w-96 px-6 py-6 text-center  rounded-lg lg:mt-0 xl:px-10">
       <div className="space-y-4 xl:space-y-6 border ">
@@ -53,29 +37,17 @@ const UserProfileCard = ({ imageUrl, name, title }) => {
           </div>
           <div className="flex flex-col justify-center mt-5 space-x-5">
             <div className="flex items-center space-x-2 justify-center ">
+             
               <button
                 type="button"
-                onClick={onEditClick}
-                className="text-gshades1 text-[21px] hover:text-pup1 focus:outline-none mr-[1vw]"
-              >
-                <FontAwesomeIcon icon={faEdit} />
-              </button>
-              <button
-                type="button"
-                onClick={onShareClick}
-                className="text-gshades1 text-[21px] mr-[1vw] hover:text-pup1 focus:outline-none"
-              >
-                <FontAwesomeIcon icon={faShare} />
-              </button>
-              <button
-                type="button"
-                onClick={onClick}
+                onClick={()=>Logout()}
                 className="text-gshades1 text-[21px] hover:text-pup1  focus:outline-none"
               >
                 <FontAwesomeIcon icon={faSignOutAlt} className="ml-2" />
                 {/* <span className="text-black invisible hover:visible text-sm">
                   Logout
                 </span> */}
+                Logout
               </button>
             </div>
             <div className="bg-gshades7 rounded-md mt-[1vh] mx-auto shadow-lg">
@@ -94,27 +66,24 @@ const UserProfileCard = ({ imageUrl, name, title }) => {
 };
 
 const Profile = () => {
+  
+  const email = useSelector((state) => state.User.email);
+  const imageUrl = useSelector((state) => state.User.imageUrl);
+  const name = useSelector((state) => state.User.name);
+
+  console.log("user",email,imageUrl,name);
   return (
     <div className="grid grid-cols-1 md:grid-cols-[33.1vw,48.1vw] gap-5  h-[100%] mx-auto">
       <div className="bg-gradient-to-t from-sfs1 to-sfs5 rounded-lg shadow-md px-4 py-4">
         {UserProfileCard({
-          imageUrl: profile,
-          name: "shweta Roy",
-          title: "hello",
-          socialLinks: [{ url: "shere" }],
+          imageUrl: imageUrl,
+          name: name,
+          title: "Welcome !!",
+          socialLinks: [{ url: email}],
         })}
       </div>
       <div className=" flex flex-col justify-between">
-        {MatchInsights({
-          heading: "Overview",
-          predictions: [],
-          otherFields: {},
-        })}
-        {MatchInsights({
-          heading: "Overview",
-          predictions: [],
-          otherFields: {},
-        })}
+       
       </div>
     </div>
   );
