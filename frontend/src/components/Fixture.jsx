@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import realMadrid from "../assets/Real-Madrid-Logo.png";
 import {useDispatch,useSelector} from 'react-redux'
-import axios from "axios";
+import { formatDate } from "../utils/dictionary";
 
 const Fixture = () => {
-  const dispatch = useDispatch();
   const [fixtureData, setFixtureData] = useState(null);
+  
+    const fixdata = useSelector((state)=>state.match.matchData);
+    useEffect(()=>{
 
- 
-
-  // useEffect(() => {
-  //  dispatch(fetchFixtures())
-  // }, [dispatch]);
+      setFixtureData(fixdata);
+    },[])
+    // console.log("fixdata is",fixdata);
+    
+  
 
   // if (!fixtureData) {
   //   return <div>Loading fixture data...</div>;
@@ -19,14 +21,6 @@ const Fixture = () => {
 
   // const { date, time, team1, team2, flag1, flag2 } = fixtureData;
 
-  const fixtData = {
-    date: "17-12-2001",
-    time: "02:10",
-    team1: "Bulgaria",
-    team2: "realMadrid",
-    flag1: "../assets/betaAi.png",
-    flag2: "",
-  };
   return (
     <div className="h-[100%] bg-white rounded px-[3vw] py-[1vh]">
       
@@ -36,11 +30,11 @@ const Fixture = () => {
         <div className="h-[100%] p-[2px] mt-[4vh] ml-[5vw]">
           <img
             className="h-[12vh] w-[12vh] mr-4"
-            src={realMadrid}
-            alt={fixtData.team1 + " Flag"}
+            src={`https://cdn.footystats.org/img/${fixtureData?.home_image}`}
+            alt={fixtureData?.home_name + " Flag"}
           />
           <span className="text-[#132B47] text-[2.5vh] font-serif font-bold">
-            {fixtData.team1}
+            {fixtureData?.home_name}
           </span>
         </div>
 
@@ -50,20 +44,20 @@ const Fixture = () => {
       </h2>
       <div className="flex flex-col">
           <span className=" text-[#132B47] text-[4vh] font-serif font-[900] mb-0">
-            {fixtData.time}
+            {formatDate(fixtureData?.date_unix)}
           </span>
-          <span className="text-[#132B47] text-[2vh] font-serif font-[400]">{fixtData.date}</span>
+          <span className="text-[#132B47] text-[2vh] font-serif font-[400]"> {formatDate(fixtureData?.date_unix)}</span>
           </div>
         </div>
 {/* second team image and name */}
         <div className="h-[100%] p-[2px] mt-[4vh] mr-[5vw]">
           <img
             className="h-[12vh] w-[12vh] mr-4"
-            src={realMadrid}
-            alt={fixtData.team1 + " Flag"}
+            src={`https://cdn.footystats.org/img/${fixtureData?.away_image}`}
+            alt={fixtureData?.away_name + " Flag"}
           />
           <span className="text-[#132B47] text-[2.5vh] font-serif font-bold">
-            {fixtData.team1}
+            {fixtureData?.away_name}
           </span>
         </div>
       </div>
