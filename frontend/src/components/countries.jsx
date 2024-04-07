@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import {useDispatch,useSelector} from 'react-redux';
-import { getTopCountries } from '../features/TopCountriesSlice';
-
+import axios from 'axios'
 
 const Countries = () => {
-  const dispatch = useDispatch();
+  const [countries,setCountries] = useState([]);
   useEffect(() => {
-    dispatch(getTopCountries());
+    async function countryf(){
+      const data = await axios.get("http://localhost:8000/api/v1/leagues/topcountry")
+      if(data){
+        // console.log("daat",data)
+        setCountries(data.data.data);
+      }
+    }
+    countryf();
+    
   }
-  , [dispatch]);
+  , []);
   
-  const countries = useSelector((state)=>state.Country.countries)
+  // const countries = useSelector((state)=>state.Country.countries)
   // console.log("countries\n",countries);
 // dummy data**
 // const countries= [
@@ -22,8 +28,8 @@ const Countries = () => {
 // ]
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md py-4 px-4 overflow-y-auto h-full">
-      <h2 className="text-[17px] font-serif text-[#132B47] font-medium mb-2">Countries</h2>
-      <form className="max-w-md mx-auto">   
+      <h2 className=" text-[12px] md:text-[17px] font-serif text-[#132B47] font-[700] mb-2">Countries</h2>
+      <form className="max-w-md mx-auto sticky">   
     <label htmlFor="default-search" className=" text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
     <div className="">
         <button className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -38,7 +44,7 @@ const Countries = () => {
       <ul className="space-y-2">
         {countries.map((country) => (
           <li key={country.id} className="flex items-center">
-            <span className="text-[14px] text-black font-normal font-serif">{country.country}</span>
+            <span className="text-[12px] md:text-[14px] text-black font-normal font-serif">{country.country}</span>
           </li>
         ))}
       </ul>
