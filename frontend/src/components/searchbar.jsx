@@ -119,7 +119,7 @@ navigate(url);
 
   return (
     <div className="flex flex-col items-center bg-white rounded-[10px]">
-      <div className="flex items-center bg-[#2604ED] rounded-[10px] h-[6vh] w-[43vw] px-4 py-2">
+      <div className="flex items-center bg-[#2604ED] rounded-[10px] h-[6vh] min-h-[25px] w-[43vw] md:w-[35vw] px-4 py-2">
         <div className="text-[#898989] font-semibold ">
           <img src={searchImg} alt="search" className="h-[24px] w-[24px]" />
         </div>
