@@ -1,6 +1,5 @@
 import React from "react";
 import betaAi from "../assets/whitebetaAi.png";
-import search from "../assets/search.png";
 import profile from "../assets/profile.png";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
@@ -33,7 +32,7 @@ const Navbar = () => {
 
   return (
     <div className="sticky top-0">
-    <nav className="top-0 w-full bg-pup1 py-2 px-4 h-[10vh]">
+    <nav className="top-0 w-full bg-pup1 py-2 px-4 h-[10vw] md:h-[6vw] min-h-[40px]">
       <div className="container md:mx-auto flex  items-center justify-between">
         {/* Logo and Text */}
         <NavLink to="">
@@ -41,9 +40,9 @@ const Navbar = () => {
           <img
             src={betaAi}
             alt="BetaAI Logo"
-            className=" h-[5vw] w-[5vw] md:h-[50px] md:w-[50px] ml-2"
+            className=" h-[5vw] w-[5vw] md:h-[3.5vw] md:w-[3.5vw] ml-2"
           />
-          <span className="text-white text-[20px] font-extrabold ">BETAI</span>
+          <span className="text-white text-[3vw] md:text-[1.5vw] font-extrabold ">BETAI</span>
         </div>
     </NavLink>
        
@@ -73,7 +72,7 @@ const Navbar = () => {
             alt="BetaAI Logo"
             className=" h-[6vw] w-[6vw] md:h-[50px] md:w-[50px] ml-2"
           />
-          <span className="text-white text-[6vh] font-bold ">BETAI</span>
+          <span className="text-white md:text-[6vw] font-bold ">BETAI</span>
         </div>
           {/* Mobile Navigation Items */}
           {Links.map((item,index) => (
@@ -96,7 +95,7 @@ const Navbar = () => {
               return (
                 <>
                   <NavLink
-                    className="text-white mx-[40px] text-[15px] font-[600] leading-[18px]"
+                    className="text-white ml-[5vw] text-[1.5vw] font-[600] leading-[18px]"
                     style={navLinkStyles}
                     key={index }
                     to={link.link}
@@ -109,11 +108,11 @@ const Navbar = () => {
             </div>
         {/* Profile Button */}
         <NavLink to="/profile">
-        <button className=" md:ml-[0] flex items-center text-white hover:text-gray-200">
+        <button className=" md:ml-[2vw] flex items-center text-white hover:text-gray-200">
           <img
             src={profile}
             alt="profile"
-            className="h-[40px] w-[40px] mr-[30px]"
+            className="h-[8vw] w-[8vw] md:h-[40px] md:w-[40px] md:mr-[30px]"
           />
         </button>
         </NavLink>
