@@ -10,7 +10,7 @@ export const getTopCountries = createAsyncThunk(
   async () => {
     const response = await axios.get("http://localhost:8000/api/v1/home/topcountry"); // Replace with actual API endpoint
     // console.log("response:\n",response);
-    return response.data;
+    return response.data.data;
   }
 );
 

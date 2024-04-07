@@ -1,43 +1,39 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
-    currentMatch: [],
+  matches: [],
 };
 
-// Action creator for fetching match details
-export const fetchMatchDetails = createAsyncThunk(
-    'match',
+export const fetchMatches = createAsyncThunk(
+    "allMatches",
     async () => {
-        const response = await axios.get("http://localhost:8000/api/v1/main/matches"); // Replace with actual API endpoint
-        // const data = await response.data;
-        console.log("match data/n",response);
-        return response.data;
+      const response = await axios.get("http://localhost:8000/api/v1/leagues/matches"); 
+      console.log("response got all:\n",response);
+      return response.data.data;
     }
-);
+  );
 
-export const fetchAdditionalData = createAsyncThunk(
-    'match/fetchAdditionalData1',
-    async (matchId) => {
-        const response = await fetch(/* Your first API endpoint */ + matchId);
-        const data = await response.json();
-        return data;
-    }
-);
-
-
-const matchSlice = createSlice({
-    name: 'match',
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchMatchDetails.fulfilled, (state, action) => {
-                
-                state.currentMatch = action.payload.data;
-            })
-    },
+const AllmatchesSlice = createSlice({
+  name: 'matches',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchMatches.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchMatches.fulfilled, (state, action) => {
+        state.matches = action.payload.data;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(fetchMatches.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  },
 });
 
 
-
-export default matchSlice.reducer;
+export default AllmatchesSlice.reducer
