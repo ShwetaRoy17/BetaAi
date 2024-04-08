@@ -1,73 +1,68 @@
-import React, { useState, useEffect } from 'react';
-import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from "react";
 
-const localizer = dateFnsLocalizer();
-
-const events = [
-  // Replace with your actual events data with { start: date object, title: event name } format
-  { start: new Date(2024, 3, 30), title: 'Meeting' },
-  { start: new Date(2024, 4, 2), title: 'Birthday' },
-];
-
-const CalendarComponent = () => {
+const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  const handlePrevMonth = () => {
-    setCurrentDate((prevDate) => new Date(prevDate.getFullYear(), prevDate.getMonth() - 1, 1));
+  const daysInMonth = (date) => {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   };
 
-  const handleNextMonth = () => {
-    setCurrentDate((prevDate) => new Date(prevDate.getFullYear(), prevDate.getMonth() + 1, 1));
+  const firstDayOfMonth = (date) => {
+    return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   };
 
-  const eventStyleGetter = (event, start) => {
+  const prevMonth = () => {
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
+  };
+
+  const nextMonth = () => {
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
+  };
+
+  const isToday = (date) => {
     const today = new Date();
-    const isUpcomingEvent = event.start > today;
-    return {
-      style: {
-        backgroundColor: isUpcomingEvent ? 'rgba(255, 224, 178, 0.3)' : 'none',
-        borderRadius: '50%',
-        width: '5px',
-        height: '5px',
-        position: 'absolute',
-        top: start.top + 5,
-        left: (start.left + start.width / 2) - 2.5,
-      },
-    };
-  };
-
-  const handleEventHover = (event) => {
-    // Optional: Display a tooltip or popup with event details on hover
-    console.log('Event Hovered:', event.title);
+    return (
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    );
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
-      <div className="flex items-center justify-between px-4 py-2 border-b border-gray-200 dark:border-gray-700">
-        <button type="button" onClick={handlePrevMonth} className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-500 focus:outline-none">
-          <FontAwesomeIcon icon={faChevronLeft} />
-        </button>
-        <span className="text-lg font-bold">{currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
-        <button type="button" onClick={handleNextMonth} className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-500 focus:outline-none">
-          <FontAwesomeIcon icon={faChevronRight} />
-        </button>
+    <div className="w-full overflow-hidden text-white font-serif text-[1vw]">
+      <div className="flex justify-between mb-4">
+        <button onClick={prevMonth}>&lt;</button>
+        <h2 className="text-[1.3vw] font-bold">
+          {currentDate.toLocaleDateString("en-US", {
+            month: "long",
+            year: "numeric",
+          })}
+        </h2>
+        <button onClick={nextMonth}>&gt;</button>
       </div>
-      <div className="px-4 py-4">
-        <Calendar
-          localizer={localizer}
-          events={events}
-          startAccessor="start"
-          endAccessor="end"
-          eventPropGetter={eventStyleGetter}
-          onEventHover={handleEventHover}
-          style={{ height: '300px' }}
-        />
+      <div className="grid grid-cols-7 gap-1">
+        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+          <div key={day} className="text-center font-bold">{day}</div>
+        ))}
+        {[...Array(firstDayOfMonth(currentDate)).keys()].map((day) => (
+          <div key={`empty-${day}`} />
+        ))}
+        {[...Array(daysInMonth(currentDate)).keys()].map((day) => {
+          const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), day + 1);
+          return (
+            <div
+              key={day}
+              className={`text-center hover:text-gshades8 p-2 ${
+                isToday(date) ? "bg-gshades4 text-white rounded-sm" : ""
+              }`}
+            >
+              {day + 1}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 };
 
-export default CalendarComponent;
+export default Calendar;

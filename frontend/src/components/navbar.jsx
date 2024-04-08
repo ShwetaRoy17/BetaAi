@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import SearchBar from "./searchbar";
-
+import { Signin } from "./SignInButton";
 
 
 
@@ -32,11 +32,11 @@ const Navbar = () => {
 
   return (
     <div className="sticky top-0">
-    <nav className="top-0 w-full bg-pup1 py-2 px-4 h-[10vw] md:h-[6vw] min-h-[40px]">
+    <nav className="top-0 w-full bg-pup1 py-2 xl:px-0 px-4 h-[10vw] md:h-[6vw] min-h-[40px] overflow-x-hidden">
       <div className="container md:mx-auto flex  items-center justify-between">
         {/* Logo and Text */}
         <NavLink to="">
-        <div className="flex items-center mr-[3vw]">
+        <div className="flex items-center mr-[3vw] xl:mr-0">
           <img
             src={betaAi}
             alt="BetaAI Logo"
@@ -107,7 +107,8 @@ const Navbar = () => {
             })}
             </div>
         {/* Profile Button */}
-        <NavLink to="/profile">
+        <Signin/>
+        {/* <NavLink to="/profile">
         <button className=" md:ml-[2vw] flex items-center text-white hover:text-gray-200">
           <img
             src={profile}
@@ -115,7 +116,7 @@ const Navbar = () => {
             className="h-[8vw] w-[8vw] md:h-[40px] md:w-[40px] md:mr-[30px]"
           />
         </button>
-        </NavLink>
+        </NavLink> */}
       </div>
     </nav>
     <div className="h-[5vh] bg-[#F1F7FF] mb-[3vh] text-[#132B47] font-serif font-[800] text-[15px] px-[7vw] md:px-[3vw]">{"spain"}</div>
