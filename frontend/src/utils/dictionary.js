@@ -7,6 +7,26 @@ const Teamlist = {
 
 }
 
+
+export function unixToTime(unixTimestamp) {
+  // Convert Unix timestamp to milliseconds
+  const milliseconds = unixTimestamp * 1000;
+  
+  // Create a new Date object
+  const dateObject = new Date(milliseconds);
+
+  // Extract hours, minutes, and seconds
+  const hours = dateObject.getHours();
+  const minutes = dateObject.getMinutes();
+  const seconds = dateObject.getSeconds();
+
+  // Format the time
+  const formattedTime = `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+  return formattedTime;
+}
+
+
 export const formatDate = (unixTimestamp)=> {
     // Create a new Date object from the Unix timestamp
     const date = new Date(unixTimestamp * 1000);
