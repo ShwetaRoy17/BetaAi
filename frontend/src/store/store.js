@@ -3,14 +3,14 @@ import Country from '../features/TopCountriesSlice'
 import topLeague from '../features/TopLeagueSlice'
 import MatchSlice from '../features/MatchSlice';
 import AllMatchSlice from '../features/AllMatchSlice';
-// import User from '../features/user.Slice.js'
+import User from '../features/user.Slice.js'
 
 const reducer = {
     match:MatchSlice,
     Country:Country,
     topLeague:topLeague,
     AllMatches:AllMatchSlice,
-//  User:User
+ User:User
 
 }
 
