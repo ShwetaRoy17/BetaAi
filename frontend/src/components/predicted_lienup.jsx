@@ -91,9 +91,9 @@ const PredictedLineup = () => {
       ) : (
        
 
-        <div className="shadow overflow-x-auto rounded-md p-2">
-          {!teamA.length && <div className="font-serif"> No data available</div>}
-          { teamA &&
+        <div className="shadow min-h-[150px] rounded-md p-2">
+          {teamA.length===0 && <div className="font-serif my-auto text-center"> No data available</div>}
+          { teamA.length!==0 &&
           <div className="flex flex-row ">
           <table className="w-full border-collapse">
             <th className="y-2 text-[1.7vh] font-bold  text-[#132B47] uppercase tracking-wider">Team A</th>
