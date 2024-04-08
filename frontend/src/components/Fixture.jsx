@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import realMadrid from "../assets/Real-Madrid-Logo.png";
 import {useDispatch,useSelector} from 'react-redux'
-import { formatDate } from "../utils/dictionary";
+import { formatDate,unixToTime } from "../utils/dictionary";
 
 const Fixture = () => {
   const [fixtureData, setFixtureData] = useState(null);
@@ -22,12 +22,12 @@ const Fixture = () => {
   // const { date, time, team1, team2, flag1, flag2 } = fixtureData;
 
   return (
-    <div className="h-[100%] bg-white rounded px-[3vw] py-[1vh]">
+    <div className="h-[100%] rounded-[8px] bg-white  xl:px-[3vw] py-[1vh] overflow-hidden mx-auto ">
       
       {/* div contaning all the information  flags name  date and time*/}
-      <div className="flex flex-row  h-[90%] items-center justify-between my-[3vh]">
+      <div className="grid grid-cols-[29%,40%,29%] gap-[1%] h-[90%] min-h-[180px] items-center  my-auto ">
         {/* first team name and flag */}
-        <div className="h-[100%] p-[2px] mt-[4vh] ml-[5vw]">
+        <div className="h-[100%] p-[2px] mt-[4vh]">
           <img
             className="h-[12vh] w-[12vh] mr-4"
             src={`https://cdn.footystats.org/img/${fixtureData?.home_image}`}
@@ -44,7 +44,7 @@ const Fixture = () => {
       </h2>
       <div className="flex flex-col">
           <span className=" text-[#132B47] text-[4vh] font-serif font-[900] mb-0">
-            {formatDate(fixtureData?.date_unix)}
+            {unixToTime(fixtureData?.date_unix)}
           </span>
           <span className="text-[#132B47] text-[2vh] font-serif font-[400]"> {formatDate(fixtureData?.date_unix)}</span>
           </div>
