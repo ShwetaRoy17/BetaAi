@@ -82,7 +82,7 @@ const Matches = () => {
                       </div>
                       <div className="bg-gshades1 h-[8vh] w-[1px] "></div>
                     
-                      <div className="flex flex-col items-center  flex-grow mx-4" onClick={handleClick(match.id)}>
+                      <div className="flex flex-col items-center  flex-grow mx-4 " onClick={()=>handleClick(match.id)}>
                         <div className="w-full flex items-center mb-[2vh] text-[14px]">
                           <img
                             src={`https://cdn.footystats.org/img/${match.home_image}`}
