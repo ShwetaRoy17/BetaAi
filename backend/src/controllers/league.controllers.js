@@ -76,7 +76,8 @@ const getLeagueMatches = asyncHandler(async (req, res) => {
 
 const getLeagueTeams = asyncHandler(async (req, res) => {
     const season_id = req.params.season_id
-    const url = `https://api.football-data-api.com/league-team?key=${process.env.API_KEY}&season_id=${season_id}`;
+    const url = `https://api.football-data-api.com/league-teams?key=${process.env.API_KEY}&season_id=${season_id}`;
+    console.log("url is ",url);
     const data = await fetchData(url);
     if (!data) {
         throw new ApiError(505, "couldn't fetch data for leag");

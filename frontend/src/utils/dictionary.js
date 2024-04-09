@@ -1,9 +1,12 @@
 const dictionary = {
-    words:["ronaldo","messi","virgo","merci"]
+    words:["Michael David",'Montreal Impact',"New York City FC","Osvaldo Alonso Moreno"]
 }
 
 const Teamlist = {
     
+ 1:'Montreal Impact',
+ 2:"New York City FC",
+ 7:"Chicago Fire"
 
 }
 
@@ -39,7 +42,15 @@ export const formatDate = (unixTimestamp)=> {
     // Format the date in ddmmyyyy format
     return `${day}/${month}/${year}`;
   }
-const Playerlist = {1:"ronaldo",2:"messi"}
-const Leaguelist = {}
+const Playerlist = {
+  190:"Michael David",
+293:"Osvaldo Alonso Moreno",
+}
+const Leaguelist = {
+1:"USA MLS 2016",
+16:"USA MLS 2015",
+23:"USA MLS 2014",
+  24:"USA MLS 203",
+}
 
 export  {dictionary,Teamlist,Playerlist,Leaguelist};
