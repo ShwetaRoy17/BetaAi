@@ -62,20 +62,20 @@ const Statistics = () => {
   }
 
   // dummy record
-  const records = [
-    { title: "Average", min: 0, max: 100, value: 75 },
-    { title: "Average Conceded Goals", min: 50, max: 150, value: 120 },
-    { title: "Average Yellow Cards", min: 0, max: 100, value: 75 },
-    { title: "Average Red Cards", min: 2, max: 150, value: 120 },
-    // ... more records
-  ];
+  // const records = [
+  //   { title: "Average", min: 0, max: 100, value: 75 },
+  //   { title: "Average Conceded Goals", min: 50, max: 150, value: 120 },
+  //   { title: "Average Yellow Cards", min: 0, max: 100, value: 75 },
+  //   { title: "Average Red Cards", min: 2, max: 150, value: 120 },
+  //   // ... more records
+  // ];
 
   return (
     <div className="flex flex-col bg-white h-full rounded-md shadow p-4 overflow-y-auto">
       <h2 className="h-[10%] text-[3vh] font-[600] text-center text-[#0B1D32] mb-[1.5vh]">
         STATISTICS
       </h2>
-      <div className="h-[90%] grid grid-rows-[10%,30%,58%] gap-[1%]">
+      <div className=" grid grid-rows-[10%,32%,56%] gap-[1%] ">
         <div className="flex justify-center gap-5 overflow-y-hidden ">
           <button
             key={"All Season"}
@@ -103,9 +103,9 @@ const Statistics = () => {
 
         <div className="grid grid-cols-[39%,10%,39%] gap-[1%]  px-[5%] items-center  my-auto ">
           {/* first team name and flag */}
-          <div className="h-[100%] p-[2vh] mx-auto items-center">
+          <div className="h-[100%] py-[1vh] px-[2vh] mx-auto items-center  overflow-y-hidden">
             <img
-              className="h-[4vw] w-[4vw] "
+              className="h-[4vw] w-[4vw] mx-auto"
               src={homeImg}
               alt={homename + " Flag"}
             />
@@ -118,9 +118,9 @@ const Statistics = () => {
             <span className="text-[2vw]">VS</span>
           </div>
           {/* second team image and name */}
-          <div className="h-[100%] p-[2vh] mx-auto ">
+          <div className="h-[100%] py-[1vh] px-[2vh] mx-auto ">
             <img
-              className="h-[4vw] w-[4vw] "
+              className="h-[4vw] w-[4vw] mx-auto"
               src={AwayImg}
               alt={awayname + " Flag"}
             />
@@ -132,8 +132,7 @@ const Statistics = () => {
         {isLoading && <div className="text-center my-auto"> Loading data</div>}
       {!isLoading &&  <div className="">
           {viewMode === "This" ? (
-            <>
-              <div className="mt-[2vh] hover:bg-sfs3 rounded-[8px] shadow-md overflow-y-auto">
+              <div className="mt-[3vh] h-[100%] hover:bg-sfs3 rounded-[8px] shadow-md overflow-y-auto ">
                 {ProgressBar(
                   "Average Goals Scored",
                   fixdata.homeGoalCount,
@@ -160,14 +159,13 @@ const Statistics = () => {
                   fixdata.team_b_corners
                 )}
               </div>
-            </>
           ) : (
-            <div className="mt-[2vh] hover:bg-sfs3 rounded-[8px] shadow-md overflow-y-auto">
-              <div className="flex flex-col items-start px-4">
-              <h2 className="font-serif font-[500] text-gshades1 text-[1.8vh]">Total Matches : <span className="font-[700] text-black">{fixdata?.h2h?.previous_matches_results?.totalMatches}</span></h2>
-              <h2 className="font-serif font-[500] text-gshades1 text-[1.8vh]">{homename}(win) : <span className="font-[700] text-black">{fixdata?.h2h?.previous_matches_results?.team_a_wins}</span></h2>
-              <h2 className="font-serif font-[500] text-gshades1 text-[1.8vh]">{awayname}(win): <span className="font-[700] text-black">{fixdata?.h2h?.previous_matches_results?.team_b_wins}</span></h2>
-              <h2 className="font-serif font-[500] text-gshades1 text-[1.8vh]">Draw : <span className="font-[700] text-black">{fixdata?.h2h?.previous_matches_results?.draw}</span></h2>
+            <div className="mt-[3vh]  h-[100%] p-2 hover:bg-sfs3 rounded-[8px] shadow-md overflow-y-auto ">
+              <div className="flex flex-col items-center px-4">
+              <h2 className="w-[60%] font-serif font-[500] text-gshades1 text-[1.8vh]">Total Matches : <span className="font-[700] text-black">{fixdata?.h2h?.previous_matches_results?.totalMatches}</span></h2>
+              <h2 className="w-[60%] font-serif font-[500] text-gshades1 text-[1.8vh]">{homename}(win) : <span className="font-[700] text-black">{fixdata?.h2h?.previous_matches_results?.team_a_wins}</span></h2>
+              <h2 className="w-[60%] font-serif font-[500] text-gshades1 text-[1.8vh]">{awayname}(win): <span className="font-[700] text-black">{fixdata?.h2h?.previous_matches_results?.team_b_wins}</span></h2>
+              <h2 className="w-[60%] font-serif font-[500] text-gshades1 text-[1.8vh]">Draw : <span className="font-[700] text-black">{fixdata?.h2h?.previous_matches_results?.draw}</span></h2>
               </div>
               {ProgressBar(
                   "Home win",
