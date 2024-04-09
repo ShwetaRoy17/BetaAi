@@ -20,10 +20,10 @@ const Home = () => {
   }, [matchId, dispatch]);
   
   const matchData = useSelector((state) => state.match.matchData);
-  console.log("match data",matchData);
+  // console.log("match data",matchData);
   return (
     <div >
-      {isLoading?(<></>):(<>
+      {isLoading?(<div className='my-auto mx-auto font-serif text-[2vw]'> Loading page..</div>):(<>
       <Stats/>
       <Odds/>
       <AiInsights/>
