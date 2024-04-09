@@ -30,8 +30,8 @@ const PredictedLineup = () => {
     setIsLoading(true);
     try {
       const { team_a, team_b } = data2; /*  initial data array  */
-      const team_1 = team_a.slice(0, 5);
-      const team_2 = team_b.slice(0, 5);
+      const team_1 = team_a?.slice(0, 5);
+      const team_2 = team_b?.slice(0, 5);
       const pData1 = await processArrayWithAsyncValues(team_1, getplayername);
       setTeamA(pData1);
       const pData2 = await processArrayWithAsyncValues(team_2, getplayername);
@@ -61,7 +61,7 @@ const PredictedLineup = () => {
     // console.log("DAta 1 after", data1);
     if (data1) {
       setData2(data1.lineups);
-      console.log("data 2 is",data2)
+      // console.log("data 2 is",data2)
       fetchData(data2);
     }
    
