@@ -3,7 +3,7 @@ import TopLeagues from '../components/topLeague';
 import Countries from '../components/countries';
 import Matches from '../components/matches';
 import {useSelector} from 'react-redux'
-import Calendar from '../components/Calendar';
+import Calendar from '../components/calendar';
 import { formatDate,unixToTime } from '../utils/dictionary';
 
 

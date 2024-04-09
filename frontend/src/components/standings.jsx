@@ -80,10 +80,10 @@ const LeagueTable = () => {
             // Fetch additional data for each team from the second API endpoint
             const teamId = team.id;
             const teamDataResponse = await axios.get(`${import.meta.env.VITE_HOST}/api/v1/leagues/getLastXStats/${teamId}`);
-            console.log("team data response",teamDataResponse)
+            // console.log("team data response",teamDataResponse)
             if(teamDataResponse){
               const teamData = teamDataResponse.data.data;
-            console.log("theam",teamData)
+            // console.log("theam",teamData)
             // Extract required data from the teamData
             const {
                 image,lastx

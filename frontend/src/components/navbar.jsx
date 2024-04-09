@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import SearchBar from "./searchbar";
-import { Signin } from "./SignInButton";
+import { Signin } from "./signinbutton";
 import { useSelector } from "react-redux";
 
 const Navbar = () => {

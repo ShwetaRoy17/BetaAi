@@ -7,16 +7,16 @@ import { createBrowserRouter,createRoutesFromElements,Route,RouterProvider } fro
 // pages import
 import Leagues from "./pages/leagues.jsx";
 import Root from "./layout.jsx";
-import Matches from "./pages/MatchesPage.jsx";
-import Main from "./pages/MatchPag.jsx";
-import Home from "./pages/Home.jsx";
-import Profile from "./pages/Profile.jsx";
+import Matches from "./pages/matchespage.jsx";
+import Main from "./pages/matchpage.jsx";
+import Home from "./pages/home.jsx";
+import Profile from "./pages/profile.jsx";
 import "./index.css";
-import Team from "./pages/Team.jsx";
-import Player from "./pages/Player.jsx";
-import LeagueStats from "./pages/LeagueStats.jsx";
-import LeagueMatches from "./pages/LeagueMatches.jsx";
-import ErrorPage from "./pages/ErrorPage.jsx"
+import Team from "./pages/team.jsx";
+import Player from "./pages/player.jsx";
+import LeagueStats from "./pages/leaguestats.jsx";
+import LeagueMatches from "./pages/leaguematches.jsx";
+import ErrorPage from "./pages/errorpage.jsx"
 
 
 const router = createBrowserRouter(

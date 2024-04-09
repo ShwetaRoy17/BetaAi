@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { formatDate } from "../utils/dictionary.js";
-import PlayerCard from "../components/PlayerCard.jsx";
+import PlayerCard from "../components/playercard.jsx";
 
 const Player = () => {
   const [data, setData] = useState([]);
