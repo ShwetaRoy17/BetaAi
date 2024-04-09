@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logoUrl from "../assets/betaAiBot.png";
-
-
+import sendIcon from "../assets/sendIcon.png"
+import editIcon from "../assets/edit.png"
 
 const Chatbot = () => {
   const name = "BETAI BOT";
@@ -44,14 +44,14 @@ const Chatbot = () => {
 
   return (
 
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden h-full">
+    <div className="bg-white grid grid-rows-[25%,60%,15%] md:grid-rows-[35%,50%,15%] dark:bg-gray-800 rounded-lg shadow-md overflow-hidden h-full">
       {/* logo and chatbot name */}
-      <div className="flex flex-col items-left  py-3 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-suppcol6 to-suppcol1 p-[30px] h-[33%]">
-        <div className="rounded-full bg-white w-[60px] h-[60px] gap-[8px] py-[10px]">
+      <div className="flex flex-col items-left  py-3 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-suppcol6 to-suppcol1 p-[30px] md:p-[2vw] ">
+        <div className="rounded-full bg-white w-[60px] gap-[8px] py-[10px]">
           <img
             src={logoUrl}
             alt="Chatbot Logo"
-            className="w-[40px] h-[40px]  mx-auto"
+            className="w-[3vw] h-[3vw] min-h-[40px] min-w-[40px]  mx-auto"
           />
         </div>
         <div className="text-left">
@@ -107,8 +107,10 @@ const Chatbot = () => {
         ))}
       </div>
       {/* text region */}
-      <div className="flex items-center justify-between px-[20px] py-[30px] border-t border-gray-200 dark:border-gray-700 h-[2vh] ">
-        <div className="h-[24px] w-[24px] bg-black"></div>
+      <div className="grid grid-cols-[12%,74%,12%]  gap-[2%] px-[30px] py-[30px] md:px-[1.2vw] md:py-[2vh] border-t border-gray-200 dark:border-gray-700 h-[2vh] ">
+        <div className="">
+          <img src={editIcon} alt="edit" className="min-h-[40px] min-w-[40px] h-[2.6vh] w-[2.6vh]" />
+        </div>
         <textarea
           type="text"
           value={userInput}
@@ -119,10 +121,11 @@ const Chatbot = () => {
         <button
           type="button"
           disabled={!userInput}
-          onClick={handleSendMessage}
-          className="h-[40px] w-[40px] inline-flex items-center pl-[10px] text-[40px] font-[600] text-center text-white bg-pup1 rounded-full hover:bg-blue-700 focus:ring-[1px] focus:outline-none focus:ring-pup1 "
+          onClick={()=>{handleSendMessage()}}
+          onKeyDown={()=>{alert("e")}}
+          className="min-h-[40px] min-w-[40px] h-[3vw] w-[3vw] inline-flex items-center pl-[10px] text-[2.6vw] font-[600] text-center text-white  rounded-full  focus:ring-[1px] focus:outline-none focus:ring-pup5 "
         >
-        {String.fromCharCode(62)}
+        <img src={sendIcon} alt=">" className="rounded-full min-h-[40px] min-w-[40px] h-[3vw] w-[3vw]" />
         </button>
       </div>
     </div>
