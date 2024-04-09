@@ -1,39 +1,23 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  matches: [],
+  FeaturedMatch: [],
+  isLoading:true,
 };
 
-export const fetchMatches = createAsyncThunk(
-    "allMatches",
-    async () => {
-      const response = await axios.get("http://localhost:8000/api/v1/leagues/matches"); 
-      console.log("response got all:\n",response);
-      return response.data.data;
-    }
-  );
+
 
 const AllmatchesSlice = createSlice({
   name: 'matches',
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchMatches.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(fetchMatches.fulfilled, (state, action) => {
-        state.matches = action.payload.data;
-        state.loading = false;
-        state.error = null;
-      })
-      .addCase(fetchMatches.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-      });
+  reducers: {
+    setMatches(state,action){
+      state.FeaturedMatch = action.payload
+      state.isLoading=false
+    },
   },
+  
 });
 
-
+export const {setMatches} =AllmatchesSlice.actions;
 export default AllmatchesSlice.reducer
