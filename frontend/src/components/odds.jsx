@@ -45,7 +45,7 @@ const ODD = () => {
           <tbody>
              {bet1xValue && <tr>
                 <td className="text-[18px] pl-[6vw] text-center td-class">{index++}.</td>
-                <td className="text-[18px] pl-[5vw] td-class text-center"><img src={betx} alt="betx"  className='h-[2vw] w-[2vw]'/></td>
+                <td className="text-[18px] pl-[5vw] td-class text-center"><img src={betx} alt="betx"  className='h-[3vw] w-[3vw] min-h-[40px] min-w-[40px]'/></td>
                 <td className="text-[18px] pl-[5vw] text-center td-class text-[#3DD598]">{data1["FT Result"]["1"]["1xbet"]}</td>
                 <td className="text-[18px] pl-[5vw] text-left td-class text-[#FC5A5A]">{data1["FT Result"]["1"]["1xbet"]}</td>
                 <td className="text-[18px] pl-[5vw] text-left td-class text-[#FC5A5A]">{data1["FT Result"]["1"]["1xbet"]}</td>
@@ -53,7 +53,7 @@ const ODD = () => {
 }
               <tr>
                 <td className="text-[18px] pl-[6vw] text-center td-class">{index++}.</td>
-                <td className="text-[18px] pl-[5vw] td-class text-center"><img src={betAi} alt="betAi" className='h-[2vw] w-[2vw]' /></td>
+                <td className="text-[18px] pl-[5vw] td-class text-center"><img src={betAi} alt="betAi" className='h-[2vw] w-[2vw] min-h-[40px] min-w-[40px]' /></td>
                 <td className="text-[18px] pl-[5vw] blur-sm  text-center td-class text-[#3DD598]">Coming Soon</td>
                 <td className="text-[18px] pl-[5vw] blur-sm text-left td-class text-[#FC5A5A]">Coming Soon</td>
                 <td className="text-[18px] pl-[5vw] blur-sm text-left td-class text-[#FC5A5A]">Coming Soon</td>
