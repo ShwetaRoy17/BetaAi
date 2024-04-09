@@ -27,38 +27,42 @@ const Fixture = () => {
       {/* div contaning all the information  flags name  date and time*/}
       <div className="grid grid-cols-[29%,40%,29%] gap-[1%] h-[90%] min-h-[180px] items-center  my-auto ">
         {/* first team name and flag */}
-        <div className="h-[100%] p-[2px] mt-[4vh]">
+        <div className="h-[100%]  p-[2px] mt-[4vh]">
           <img
-            className="h-[12vh] w-[12vh] mr-4"
+            className="h-[12vh] w-[12vh] mx-auto"
             src={`https://cdn.footystats.org/img/${fixtureData?.home_image}`}
             alt={fixtureData?.home_name + " Flag"}
           />
+          <div className="text-center w-[100%] ">
           <span className="text-[#132B47] text-[2.5vh] font-serif font-bold">
             {fixtureData?.home_name}
           </span>
+          </div>
         </div>
 
         <div className="text-center ">
-        <h2 className="text-[3vh] font-[600] text-center text-[#0B1D32] mb-[2.5vh]">
+        <h2 className="text-[3vw] md:text-[19px] font-[600] text-center text-[#0B1D32] mb-[2.5vh]">
         FIXTURE
       </h2>
       <div className="flex flex-col">
-          <span className=" text-[#132B47] text-[4vh] font-serif font-[900] mb-0">
+          <span className=" text-[#132B47] text-[4vw] md:text-[22px] font-serif font-[900] mb-0">
             {unixToTime(fixtureData?.date_unix)}
           </span>
           <span className="text-[#132B47] text-[2vh] font-serif font-[400]"> {formatDate(fixtureData?.date_unix)}</span>
           </div>
         </div>
 {/* second team image and name */}
-        <div className="h-[100%] p-[2px] mt-[4vh] mr-[5vw]">
+        <div className="h-[100%] p-[2px] mt-[4vh] ">
           <img
-            className="h-[12vh] w-[12vh] mr-4"
+            className="h-[12vh] w-[12vh] mx-auto"
             src={`https://cdn.footystats.org/img/${fixtureData?.away_image}`}
             alt={fixtureData?.away_name + " Flag"}
           />
+          <div className="text-center w-[100%] ">
           <span className="text-[#132B47] text-[2.5vh] font-serif font-bold">
             {fixtureData?.away_name}
           </span>
+          </div>
         </div>
       </div>
     </div>

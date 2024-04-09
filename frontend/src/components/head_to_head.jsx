@@ -20,51 +20,14 @@ const head_to_head = () => {
       setAwayImg(`https://cdn.footystats.org/img/${fixdata.away_image}`,)
       setHomename(fixdata.home_name)
       setAwayname(fixdata.away_name)
-      console.log("h2h", fixdata.h2h);
+      // console.log("h2h", fixdata.h2h);
       setIsLoading(false);
       console.log(homeImg)
     }
   }, [fixdata]);
   // console.log("fixdata is",lastData);
 
-  const data = [
-    {
-      league: "La LiGA",
-      Hometeam: "RealMadrid",
-      Score: 1.0,
-      AwayTeam: "Celta Vigo",
-    },
-    {
-      league: "La LiGA",
-      Hometeam: "RealMadrid",
-      Score: 1.0,
-      AwayTeam: "Celta Vigo",
-    },
-    {
-      league: "La LiGA",
-      Hometeam: "RealMadrid",
-      Score: 1.0,
-      AwayTeam: "Celta Vigo",
-    },
-    {
-      league: "La LiGA",
-      Hometeam: "RealMadrid",
-      Score: 1.0,
-      AwayTeam: "Celta Vigo",
-    },
-    {
-      league: "La LiGA",
-      Hometeam: "RealMadrid",
-      Score: 1.0,
-      AwayTeam: "Celta Vigo",
-    },
-    {
-      league: "La LiGA",
-      Hometeam: "RealMadrid",
-      Score: 1.0,
-      AwayTeam: "Celta Vigo",
-    },
-  ];
+ 
 
   return (
     <div className="flex flex-col w-full bg-white h-full overflow-y-auto">
@@ -86,6 +49,7 @@ const head_to_head = () => {
             </tr>
           </thead>
           <tbody>
+            {lastData===null && <div className="min-h-[100px] my-auto text-center">No available data</div>}
             {lastData?.slice(0,6).map((match, index) => (
               <tr key={index} className={index % 2 === 0 ? "" : "bg-sfs3"}>
                 <td className="pl-[1vw] text-center td-class">{index + 1}</td>
