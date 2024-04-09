@@ -1,8 +1,8 @@
 import React,{useEffect,useState} from 'react'
-import Stats from '../components/stats.jsx'
-import CommentSection from '../components/comments.jsx'
-import AiInsights from './aiinsights.jsx'
-import Odds from '../components/odds.jsx'
+import Stats from '../components/stats'
+import CommentSection from '../components/comments'
+import AiInsights from './aiinsights'
+import Odds from '../components/odds'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchMatchData } from '../features/MatchSlice.js';

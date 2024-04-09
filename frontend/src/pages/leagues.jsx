@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import TopLeagues from "../components/topLeague.jsx";
+import TopLeagues from "../components/topLeague";
 import axios from "axios";
 
 const League = () => {
