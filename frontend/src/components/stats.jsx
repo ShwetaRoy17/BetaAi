@@ -1,7 +1,7 @@
 import React from 'react'
 import Fixture from './Fixture'
-import Predict from './predicted_lienup'
-import LastHead from './head_to_head'
+import Predict from './predictedLineup'
+import LastHead from './headTohead'
 import Standing from './standings'
 import Statistcs from './statistic'
 

@@ -15,7 +15,7 @@ useEffect(()=>{
 },[data,isLoading])
 return (
   <>
-  {isLoading && <div className='font-serif my-auto mx-auto '>Loading...</div>}
+  {isLoading && <div className='font-serif py-4 mx-auto bg-white h-full text-center'>Loading...</div>}
   {!isLoading && 
   <div className="h-[90%] rounded-[8px] bg-white  xl:px-[1.5vw] py-[1vh] overflow-hidden mx-auto ">
       

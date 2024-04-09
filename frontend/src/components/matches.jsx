@@ -90,9 +90,9 @@ const dispatch = useDispatch();
         
         setIsLoading1(true);
         const Data = await clusterAndFetchLeagueDetails(todayMatch);
+        if(Data) {
         setClusteredData(Data);
         console.log("data after function",Data)
-        if(Data) {
         setIsLoading1(false);
         }
       } catch (error) {

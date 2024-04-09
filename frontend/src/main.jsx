@@ -13,10 +13,10 @@ import Home from "./pages/Home.jsx";
 import Profile from "./pages/Profile.jsx";
 import "./index.css";
 import Team from "./pages/Team.jsx";
-import Player from "./pages/player.jsx";
-import LeagueStats from "./pages/League-stats.jsx";
-import LeagueMatches from "./pages/league-matches.jsx";
-import ErrorPage from "./pages/error-page.jsx"
+import Player from "./pages/Player.jsx";
+import LeagueStats from "./pages/LeagueStats.jsx";
+import LeagueMatches from "./pages/LeagueMatches.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx"
 
 
 const router = createBrowserRouter(

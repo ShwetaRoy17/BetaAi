@@ -5,9 +5,9 @@ const Countries = () => {
   const [countries,setCountries] = useState([]);
   useEffect(() => {
     async function countryf(){
-      const data = await axios.get(`${import.meta.env.VITE_HOST}/api/v1/leagues/topcountry1`)
+      const data = await axios.get(`${import.meta.env.VITE_HOST}/api/v1/leagues/topcountry`)
       if(data){
-        // console.log("daat",data)
+        console.log(" countries daat",data)
         setCountries(data.data.data);
       }
     }

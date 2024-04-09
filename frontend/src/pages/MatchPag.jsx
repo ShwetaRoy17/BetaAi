@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import Stats from '../components/stats.jsx'
 import CommentSection from '../components/comments.jsx'
-import AiInsights from './ai_insights.jsx'
+import AiInsights from './AiInsights.jsx'
 import Odds from '../components/odds.jsx'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
