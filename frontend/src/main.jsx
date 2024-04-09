@@ -22,13 +22,14 @@ import ErrorPage from "./pages/error-page.jsx"
 const router = createBrowserRouter(
   createRoutesFromElements(
   <Route path="/" element={<Root />}>
+    <Route index element={<Home />} />
      <Route path='home' element={<Home/>}></Route>
       <Route path='leagues' element ={<Leagues/>}></Route>
       <Route path='matches' element ={<Matches/>}></Route>
       <Route path="profile" element={<Profile/>}></Route>
       <Route path="league-stats/:season_id" element={<LeagueStats/>}></Route>
       <Route path="match-stats/:season_id" element={<LeagueMatches/>}></Route>
-      <Route path="search/team/:id" element={<Team/>}></Route>
+      <Route path="search/team/:team_id" element={<Team/>}></Route>
       <Route path="search/player/:player_id" element={<Player/>}></Route>
      <Route path='match/:matchId' element={<Main/>}></Route>
      <Route path='*' element={<ErrorPage/>} />

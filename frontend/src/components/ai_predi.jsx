@@ -7,12 +7,12 @@ const AISights = ({  fetchPrediction }) => {
   useEffect(() => {
     if (isPremium) {
       const fetchData = async () => {
-        const response = await fetchPrediction(); // Call your actual backend function
+        const response = await fetchPrediction(); // Calling our actual backend function
         setPredictionData(response.data); // Assuming response has prediction data
       };
       fetchData();
     }
-  }, [isPremium, fetchPrediction]); // Update on premium state change
+  }, [isPremium, fetchPrediction]); // Updating on premium state change
 
   return (
     <div className="w-full h-[200px] md:h-full bg-black dark:bg-gray-900 rounded-lg overflow-hidden shadow-md">
@@ -28,9 +28,9 @@ const AISights = ({  fetchPrediction }) => {
           )}
         </div>
       ) : (
-        <div className="flex items-center justify-center h-full bg-black opacity-50 static blur">
-          <div className="flex flex-col items-center">
-            <i className="fas fa-lock text-white text-4xl mb-2"></i>
+        <div className="flex items-center justify-center h-full bg-black  bg-opacity-45 relative blur -z-10">
+          <div className="flex flex-col items-center font-source">
+            <i className="fas fa-lock text-white text-4xl mb-2">hey user,</i>
             <p className="text-white text-lg font-bold z-10">Access Premium Feature</p>
           </div>
         </div>
