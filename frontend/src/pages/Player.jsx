@@ -1,111 +1,93 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faShare } from "@fortawesome/free-solid-svg-icons";
-import profile from "../assets/profile.png";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { formatDate } from "../utils/dictionary.js";
+import PlayerCard from "../components/PlayerCard.jsx";
 
-const MatchInsights = ({ heading, predictions, otherFields }) => {
+const Player = () => {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const { player_id } = useParams();
+
+  useEffect(() => {
+    async function fetchdata(player_id) {
+      setIsLoading(true);
+      try {
+        const url = `http://localhost:8000/api/v1/search/player/${player_id}`;
+        const response = await axios.get(url);
+        console.log("data", response);
+        if (response) {
+          setData(response.data.data);
+          console.log("p data", data, response.data.data);
+          setIsLoading(false);
+        }
+      } catch (error) {
+        setIsLoading(true);
+        console.log("error with player", error);
+      }
+    }
+    fetchdata(player_id);
+  }, []);
+
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md px-4 py-4 h-[46%]">
-      <h2 className="text-lg font-bold mb-4">{heading}</h2>
-      <div className="flex flex-col border-b border-gray-200 dark:border-gray-700 pb-2">
-        {/* Display Match Predictions */}
-        {predictions && (
-          <>
-            <p className="text-sm">Predictions:</p>
-            <ul className="list-disc pl-4">
-              {predictions.map((prediction, index) => (
-                <li key={index}>{prediction}</li>
-              ))}
-            </ul>
-          </>
+    <>
+      <div className="w-[90vw] md:w-full ">
+        {isLoading && (
+          <div className="my-auto h-[60vh] text-center mx-auto">Loading Players Details..</div>
+        )}
+        {!isLoading && data && (
+          <div className="">
+            <div className="md:mx-[4vw] md:h-full  shadow-xl rounded-lg text-gray-900">
+
+              <div className=" h-[31vh] rounded-t-lg  bg-gradient-to-r from-suppcol6 to-pup1"></div>
+              <div className="mx-auto w-[27vh] -mt-[21vh] border-4 border-white rounded-full overflow-hidden">
+                <img
+                  className="object-cover object-center h-[100px] min-h-[50px] min-w-[50px] md:h-[27vh] md:w-[27vh]"
+                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
+                  alt={data[0]?.["full_name"]}
+                />
+              </div>
+              <div className="text-center mt-2">
+                <h2 className="font-bold font-source text-[27px] text-suppcol6">
+                  {data[0]?.known_as.toUpperCase()}
+                </h2>
+                <p className="text-gray-500 font-serif text-[18px]">
+                  {data[0]?.full_name}
+                </p>
+              </div>
+              <div className="flex flex-col  mx-auto ">
+                <div className=" md:text-[18px] text-[12px] flex items-center mb-[5px] mx-auto">
+                  <span className="font-[400] text-[#333] font-serif mr-[1vw]">
+                    Full Name
+                  </span>
+                  <span className="font-[800] text-black font-serif">
+                    {data[0]?.full_name}
+                  </span>
+                </div>
+                <div className="flex items-center mb-[5px] mx-auto">
+                  <span className="font-[400] text-[#333] font-serif mr-[1vw]">
+                    Birthday
+                  </span>
+                  <span className="font-[800] text-black font-serif">
+                    {formatDate(data[0]?.birthday)}
+                  </span>
+                </div>
+                <div className="flex items-center mb-[5px] mx-auto">
+                  <span className="font-[400] text-[#333] font-serif mr-[1vw]">
+                    age
+                  </span>
+                  <span className="font-[800] text-black font-serif">
+                    {data[0]?.age}
+                  </span>
+                </div>
+              </div>
+              <h2 className="font-source text-[3vw] font-[700] text-center">PERFORMANCE OVERALL</h2>
+              {data.map((match) => PlayerCard(match))}
+            </div>
+          </div>
         )}
       </div>
-      {/* Display Other Fields */}
-      {otherFields && (
-        <div className="mt-2">
-          {Object.entries(otherFields).map(([field, value], index) => (
-            <p key={index} className="text-sm">
-              {field}: {value}
-            </p>
-          ))}
-        </div>
-      )}
-    </div>
+    </>
   );
 };
-
-const UserProfileCard = ({ imageUrl, name, title, socialLinks }) => {
-  const onEditClick = () => {};
-  const onShareClick = () => {};
-  return (
-    <div className="w-96 px-6 py-6 text-center  rounded-lg lg:mt-0 xl:px-10">
-      <div className="space-y-4 xl:space-y-6 border ">
-        <img
-          className="mx-auto rounded-full h-36 w-36 object-cover border border-gshades1"
-          src={imageUrl}
-          alt="Author Avatar"
-        />
-        <div className="space-y-2">
-          <div className="flex justify-center items-center flex-col space-y-3 text-lg font-medium leading-6">
-            <h3 className="text-white">{name}</h3>
-          </div>
-          <div className="flex flex-col justify-center mt-5 space-x-5">
-            <div className="flex items-center space-x-2 justify-center ">
-              <button
-                type="button"
-                onClick={onEditClick}
-                className="text-gshades1 text-[21px] hover:text-pup1 focus:outline-none mr-[1vw]"
-              >
-                <FontAwesomeIcon icon={faEdit} />
-              </button>
-              <button
-                type="button"
-                onClick={onShareClick}
-                className="text-gshades1 text-[21px] hover:text-pup1 focus:outline-none"
-              >
-                <FontAwesomeIcon icon={faShare} />
-              </button>
-            </div>
-            <div className="bg-gshades7 rounded-md mt-[1vh] mx-auto shadow-lg">
-              <p className="font-serif text-left p-2 text-[14px]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
-                aliquam necessitatibus nulla perferendis tempora quam incidunt
-                distinctio cumque consectetur. Maxime iure libero commodi atque
-                blanditiis.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const Profile = () => {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-[33.1vw,48.1vw] gap-5  h-[100%] mx-auto">
-      <div className="bg-gradient-to-t from-sfs1 to-sfs5 rounded-lg shadow-md px-4 py-4">
-        {UserProfileCard({
-          imageUrl: profile,
-          name: "shweta Roy",
-          title: "hello",
-          socialLinks: [{ url: "shere" }],
-        })}
-      </div>
-      <div className=" flex flex-col justify-between">
-        {MatchInsights({
-          heading: "Overview",
-          predictions: [],
-          otherFields: {},
-        })}
-        {MatchInsights({
-          heading: "Overview",
-          predictions: [],
-          otherFields: {},
-        })}
-      </div>
-    </div>
-  );
-};
-
-export default Profile;
+export default Player;
