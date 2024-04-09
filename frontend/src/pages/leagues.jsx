@@ -10,7 +10,7 @@ const League = () => {
   useEffect(() => {
     async function leaguedata() {
       const data = await axios.get(
-        "http://localhost:8000/api/v1/leagues/topleague"
+        `${import.meta.env.VITE_HOST}/api/v1/leagues/topleague`
       );
       if (data) {
         // console.log("league data",data);

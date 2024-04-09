@@ -5,7 +5,7 @@ const Countries = () => {
   const [countries,setCountries] = useState([]);
   useEffect(() => {
     async function countryf(){
-      const data = await axios.get("http://localhost:8000/api/v1/leagues/topcountry")
+      const data = await axios.get(`${import.meta.env.VITE_HOST}/api/v1/leagues/topcountry1`)
       if(data){
         // console.log("daat",data)
         setCountries(data.data.data);

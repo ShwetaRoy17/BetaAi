@@ -30,8 +30,8 @@ const Navbar = () => {
 
   return (
     <div className="sticky top-0">
-      <nav className="top-0 w-full bg-pup1 py-[12px]  md:py-2 xl:grid  px-4 h-[10vw]  md:h-[6vw] min-h-[70px] overflow-x-hidden">
-        <div className=" md:mx-[3vw] flex  items-center justify-between grid-cols-[8vw,25vw,40vw,10vw] gap-[2%]">
+      <nav className="top-0 w-full bg-pup1 py-[12px]  md:py-2 xl:grid  px-2 h-[10vw]  md:h-[6vw] min-h-[70px] overflow-x-hidden">
+        <div className=" md:mx-[3vw] flex  items-center justify-between grid-cols-[15vw,64vw,7vw,5vw] md:grid-cols-[8vw,25vw,40vw,10vw] gap-[2%]">
           {/* Logo and Text */}
           <div className=" mr-[2vw] ">
             <NavLink to="" className="flex items-center ">

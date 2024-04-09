@@ -32,7 +32,7 @@ const LeagueStats = () => {
   useEffect(() => {
     async function fetchLeagueData() {
       try {
-        const url = `http://localhost:8000/api/v1/leagues/leagueStats/${season_id}`;
+        const url = `${import.meta.env.VITE_HOST}/api/v1/leagues/leagueStats/${season_id}`;
         const response = await axios.get(url);
         // alert("hello")
         setLeague(response.data.data);

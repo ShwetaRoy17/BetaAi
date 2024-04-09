@@ -13,7 +13,7 @@ const Player = () => {
     async function fetchdata(player_id) {
       setIsLoading(true);
       try {
-        const url = `http://localhost:8000/api/v1/search/player/${player_id}`;
+        const url = `${import.meta.env.VITE_HOST}/api/v1/search/player/${player_id}`;
         const response = await axios.get(url);
         console.log("data", response);
         if (response) {

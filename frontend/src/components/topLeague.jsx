@@ -6,7 +6,7 @@ const TopLeagues = () => {
   const [leagues,setLeagueList]= useState([]);
   useEffect(() => {
     async function help(){
-      const data = await axios.get("http://localhost:8000/api/v1/leagues/topleague");
+      const data = await axios.get(`${import.meta.env.VITE_HOST}/api/v1/leagues/topleague`);
       if(data){
         // console.log("data",data);
       setLeagueList(data.data.data);

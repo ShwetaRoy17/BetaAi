@@ -26,7 +26,7 @@ const dispatch = useDispatch();
   async function fetchLeagueDetails(competitionId) {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/v1/leagues/leaguedetails/${competitionId}`
+        `${import.meta.env.VITE_HOST}/api/v1/leagues/leaguedetails/${competitionId}`
       );
       // console.log("league Details are:", response.data.data); // console for checking response
       return response.data.data;
@@ -73,7 +73,7 @@ const dispatch = useDispatch();
     async function matchdata() {
       setIsLoading(true);
       const data = await axios.get(
-        "http://localhost:8000/api/v1/leagues/matches"
+        `${import.meta.env.VITE_HOST}/api/v1/leagues/matches`
       );
       if (data) {
         setTodayMatch(data.data.data);

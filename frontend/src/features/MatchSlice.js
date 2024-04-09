@@ -23,7 +23,7 @@ export const fetchMatchData = createAsyncThunk(
     async (matchId) => {
         // console.log("matchId",matchId);
       // Replace this with your actual API call
-      const response = await axios.get(`http://localhost:8000/api/v1/leagues/MatchDetails/${matchId}`);
+      const response = await axios.get(`${import.meta.env.VITE_HOST}/api/v1/leagues/MatchDetails/${matchId}`);
       // console.log("the response is ",response.data);
       return response.data;
     }

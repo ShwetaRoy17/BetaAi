@@ -13,7 +13,7 @@ const PredictedLineup = () => {
   async function getplayername(id) {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/v1/search/playerName/${id}`
+        `${import.meta.env.VITE_HOST}/api/v1/search/playerName/${id}`
       );
       // console.log("response for getplayer name is ",response.data.data.full_name);
       if (response.data.data.full_name) {

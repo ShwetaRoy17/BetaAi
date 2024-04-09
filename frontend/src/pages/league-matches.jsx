@@ -9,7 +9,7 @@ const LeagueMatches = () => {
   useEffect(() => {
     async function leagueMatch() {
       try {
-        const url = `http://localhost:8000/api/v1/leagues/leagueMatches/${season_id}`;
+        const url = `${import.meta.env.VITE_HOST}/api/v1/leagues/leagueMatches/${season_id}`;
         const response = await axios.get(url);
         setLeaguematch(response.data.data);
         console.log("response is,", leaguematch.length);

@@ -137,7 +137,7 @@ navigate(url);
       </div>
 
       {showDiv && suggestions.length > 0 && (
-        <div className=" bg-sfs5 rounded-md shadow-md px-2 py-3 w-full">
+        <div className=" bg-sfs5 rounded-md shadow-md px-2 py-3 w-full absolute top-[8vh] md:top-[5vh] right-[]">
           <ul className="list-style-none w-full flex flex-col text-[14px] overflow-y-auto">
             {suggestions.map((suggestion) => {
               return (
