@@ -7,7 +7,7 @@ import fetchData from '../utils/fetchData.js';
 
 const getTeam = asyncHandler(async(req,res)=>{
     const id = req.params.team_id
-    const url = `https://api.football-data-api.com/team?key=${process.env.API_KEY}&team_id=${team_id}&include=stats`;
+    const url = `https://api.football-data-api.com/team?key=${process.env.API_KEY}&team_id=${id}&include=stats`;
     const data = await fetchData(url);
     if(!data){
         throw new ApiError(403,"couldn't fetch data for the give team");

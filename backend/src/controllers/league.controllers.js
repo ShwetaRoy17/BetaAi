@@ -2,6 +2,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import fetchData from '../utils/fetchData.js';
+import { response } from "express";
 
 // Todays' match controller
 const getTodaysMatch = asyncHandler(async (req, res) => {
@@ -57,6 +58,8 @@ const getLeagueStats = asyncHandler(async (req, res) => {
         .json(new ApiResponse(200, data.data, `League stats for league with season id:${season_id}`));
 })
 
+
+
 const getLeagueMatches = asyncHandler(async (req, res) => {
     // https://api.football-data-api.com/league-matches?key=YOURKEY&season_id=1
     const season_id = req.params.season_id
@@ -69,6 +72,8 @@ const getLeagueMatches = asyncHandler(async (req, res) => {
         .json(new ApiResponse(200, data.data, `League Matches for league id ${season_id}`));
 })
 
+
+
 const getLeagueTeams = asyncHandler(async (req, res) => {
     const season_id = req.params.season_id
     const url = `https://api.football-data-api.com/league-team?key=${process.env.API_KEY}&season_id=${season_id}`;
@@ -80,6 +85,9 @@ const getLeagueTeams = asyncHandler(async (req, res) => {
         .status(201)
         .json(new ApiResponse(200, data.data, `League Teams for league id :${season_id}`));
 })
+
+
+
 const getLeaguePlayers = asyncHandler(async (req, res) => {
     const season_id = req.params.season_id;
     const url = `https://api.football-data-api.com/league-players?key=${process.env.API_KEY}&season_id=${season_id}`;
@@ -91,6 +99,8 @@ const getLeaguePlayers = asyncHandler(async (req, res) => {
         .status(201)
         .json(new ApiResponse(200, data.data, `League players for league ${season_id}`));
 })
+
+
 
 const getMatchDetails = asyncHandler(async (req, res) => {
     const season_id = req.params.season_id
@@ -105,17 +115,23 @@ const getMatchDetails = asyncHandler(async (req, res) => {
     return res.status(201).json(new ApiResponse(200, response.data, "Match stats"))
 })
 
+
+
 const getLastXstats = asyncHandler(async (req, res) => {
-    const x = req.params.x
-    const team_id = req.params.team_id
-    const url = `https://api.football-data-api.com/${x}?key=${process.env.API_KEY}&team_id=${team_id}`
-    const response = fetchData(url)
-    if (!response) {
-        throw new ApiError(403, "couldn't fetch last stats for team" + team_id,);
+    
+
+    const id = req.params.id
+    const url = `https://api.football-data-api.com/lastx?key=${process.env.API_KEY}&team_id=${id}`
+
+    const data = await fetchData(url);
+    if(!data) {
+        throw new ApiError(505,"couldn't fetch data for team")
     }
-    return res.status(201).
-        json(new ApiResponse(201, response.data, "successfully fetched last x stats"))
+    
+    res.status(201).json(new ApiResponse(200,{"image":data.data[0]?.image,"lastx":data.data[0]?.["stats"]?.["additional_info"]?.["formRun_overall"]},"successful x"))
 })
+
+
 const getLeagueDetails = asyncHandler(async (req, res) => {
     const season_id = req.params.season_id
     const url = `https://api.football-data-api.com/league-season?key=${process.env.API_KEY}&season_id=${season_id}`;
@@ -128,6 +144,21 @@ const getLeagueDetails = asyncHandler(async (req, res) => {
         json(new ApiResponse(201, {name:data.data.name,country:data.data.country,image:data.data.image}, "successfully fetched league names ,data and image"))
 })
 
+
+// get league tables
+const getLeagueTables = asyncHandler(async(req,res)=>{
+    // https://api.football-data-api.com/league-tables?key=YOURKEY&season_id=X
+
+    const season_id = req.params.season_id
+    const url = `https://api.football-data-api.com/league-tables?key=${process.env.API_KEY}&season_id=${season_id}`
+    const response = await fetchData(url)
+    if (!response) {
+        throw new ApiError(403, "couldn't fetch last stats for team" + team_id,);
+    }
+    return res.status(201).
+        json(new ApiResponse(201, response.data, "successfully league tables"))
+})
+
 export {
     getTopCountries,
     getTopLeagues,
@@ -138,6 +169,7 @@ export {
     getLeagueTeams,
     getLeaguePlayers,
     getLeagueStats,
-    getLeagueDetails
+    getLeagueDetails,
+    getLeagueTables
 };
 

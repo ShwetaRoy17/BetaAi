@@ -20,14 +20,14 @@ app.use(cookieParser())
 
 
 // import routers from
-import toprouter from "./routes/top.route.js";
-import fixturerouter from "./routes/fixture.route.js";
-import userRouter from "./routes/user.route.js";
+import leagueRouter from "./routes/league.route.js";
+import searchRouter from "./routes/search.route.js";
+// import userRouter from "./routes/user.route.js";
 
 
 // router declaration
-app.use('/api/v1/main',fixturerouter) //fixture routes
-app.use('/api/v1/home',toprouter); // country and league routes
-// app.use('/api/v1/user',userRouter); // user routes
+app.use('/api/v1/search',searchRouter) //search routes
+app.use('/api/v1/leagues',leagueRouter); // leagues and realted routes
+// app.use('/api/v1/user',userRouter); // user and its activity routes
 
 export default app
