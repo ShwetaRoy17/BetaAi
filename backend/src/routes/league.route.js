@@ -14,12 +14,16 @@ import {
     getLeaguePlayers,
     getLeagueStats,
     getLeagueDetails,
-    getLeagueTables
+    getLeagueTables,
+    getLiveMatches,
+    getAllMatches
 } from '../controllers/league.controllers.js'
 
 router.route("/topcountry").get(getTopCountries)
 router.route("/topleague").get(getTopLeagues);
 router.route("/matches").get(getTodaysMatch);
+router.route("/getLiveMatches").get(getLiveMatches);
+router.route("/getAllMatches/query").get(getAllMatches);
 router.route("/getLastXStats/:id").get(getLastXstats);
 router.route("/MatchDetails/:season_id").get(getMatchDetails);
 router.route("/leagueMatches/:season_id").get(getLeagueMatches);
